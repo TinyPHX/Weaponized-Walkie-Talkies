@@ -21,7 +21,10 @@ public class PlayerController : MonoBehaviour {
         rigidBody.AddForce(new Vector3(inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_1_X), 0f, -inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_1_Y)) * Time.deltaTime * move_speed);
         inputRotation = new Vector2(inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_2_X), inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_2_Y));
 
-        Quaternion goalRotation = Quaternion.LookRotation(new Vector3(inputRotation.x, 0f, -inputRotation.y));
+        Vector3 goalRotationVector = new Vector3(inputRotation.x, 0f, -inputRotation.y);
+        Quaternion goalRotation = new Quaternion();
+        if (goalRotationVector != Vector3.zero)
+            goalRotation = Quaternion.LookRotation(goalRotationVector);
         if (Mathf.Abs(inputRotation.x) >= rotationDeadzone || Mathf.Abs(inputRotation.y) >= rotationDeadzone) {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * move_speed);
         }
