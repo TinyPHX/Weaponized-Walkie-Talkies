@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 1585139b95c605a4cb452a52035ace65
-timeCreated: 1517091810
-licenseType: Free
+guid: e6e9d20624a23da4c8b2b6fb7608bb9a
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - TheFont: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
