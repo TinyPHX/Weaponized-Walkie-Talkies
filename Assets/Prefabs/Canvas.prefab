@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224772234201531662}
   - component: {fileID: 114805425169816812}
   m_Layer: 5
-  m_Name: Health Bar
+  m_Name: P1 HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,6 +52,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224881056403393658}
+  - component: {fileID: 114621885901945108}
   m_Layer: 5
   m_Name: Player 1
   m_TagString: Untagged
@@ -89,7 +90,7 @@ GameObject:
   - component: {fileID: 222384465833519294}
   - component: {fileID: 114622488208154630}
   m_Layer: 5
-  m_Name: Name
+  m_Name: P1 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +109,7 @@ GameObject:
   - component: {fileID: 222683272124406350}
   - component: {fileID: 114241189852101456}
   m_Layer: 5
-  m_Name: Name
+  m_Name: P3 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,6 +155,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224843052731309064}
+  - component: {fileID: 114071591986687410}
   m_Layer: 5
   m_Name: Player 2
   m_TagString: Untagged
@@ -171,7 +173,7 @@ GameObject:
   - component: {fileID: 224045303983447666}
   - component: {fileID: 114596792300211258}
   m_Layer: 5
-  m_Name: Health Bar
+  m_Name: P2 HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,7 +192,7 @@ GameObject:
   - component: {fileID: 222073945241020358}
   - component: {fileID: 114116236908042920}
   m_Layer: 5
-  m_Name: Name
+  m_Name: P2 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,7 +255,7 @@ GameObject:
   - component: {fileID: 224789047619155896}
   - component: {fileID: 114362312566098620}
   m_Layer: 5
-  m_Name: Health Bar
+  m_Name: P4 HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,6 +269,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224913962398906546}
+  - component: {fileID: 114330050316044108}
   m_Layer: 5
   m_Name: Player 4
   m_TagString: Untagged
@@ -287,7 +290,7 @@ GameObject:
   - component: {fileID: 222124074434255020}
   - component: {fileID: 114621196914695330}
   m_Layer: 5
-  m_Name: Name
+  m_Name: P4 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,7 +306,7 @@ GameObject:
   - component: {fileID: 224410549195821752}
   - component: {fileID: 114309245802034688}
   m_Layer: 5
-  m_Name: Health Bar
+  m_Name: P3 HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,6 +320,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224364039533626192}
+  - component: {fileID: 114877871626008234}
   m_Layer: 5
   m_Name: Player 3
   m_TagString: Untagged
@@ -602,6 +606,25 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114071591986687410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1274987450253224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e261de77c32f442af8f6c2df371a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 114596792300211258}
+  healthBarImage: {fileID: 114628587284665446}
+  maxHealth: 250
+  highHealthColor: {r: 0, g: 1, b: 0, a: 1}
+  mediumHealthColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  lowHealthColor: {r: 1, g: 0, b: 0, a: 1}
+  redYellowCutoff: 30
+  yellowGreenCutoff: 70
 --- !u!114 &114116236908042920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -917,6 +940,25 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114330050316044108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1582839396706764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e261de77c32f442af8f6c2df371a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 114362312566098620}
+  healthBarImage: {fileID: 114696999604237310}
+  maxHealth: 250
+  highHealthColor: {r: 0, g: 1, b: 0, a: 1}
+  mediumHealthColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  lowHealthColor: {r: 1, g: 0, b: 0, a: 1}
+  redYellowCutoff: 30
+  yellowGreenCutoff: 70
 --- !u!114 &114362312566098620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -957,9 +999,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1059,9 +1101,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1179,6 +1221,25 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &114621885901945108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1098043908393840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e261de77c32f442af8f6c2df371a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 114805425169816812}
+  healthBarImage: {fileID: 114626740735346118}
+  maxHealth: 250
+  highHealthColor: {r: 0, g: 1, b: 0, a: 1}
+  mediumHealthColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  lowHealthColor: {r: 1, g: 0, b: 0, a: 1}
+  redYellowCutoff: 30
+  yellowGreenCutoff: 70
 --- !u!114 &114622488208154630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1439,9 +1500,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1474,6 +1535,25 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114877871626008234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593382636118850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e261de77c32f442af8f6c2df371a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 114309245802034688}
+  healthBarImage: {fileID: 114573205737501816}
+  maxHealth: 250
+  highHealthColor: {r: 0, g: 1, b: 0, a: 1}
+  mediumHealthColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  lowHealthColor: {r: 1, g: 0, b: 0, a: 1}
+  redYellowCutoff: 30
+  yellowGreenCutoff: 70
 --- !u!222 &222073945241020358
 CanvasRenderer:
   m_ObjectHideFlags: 1
