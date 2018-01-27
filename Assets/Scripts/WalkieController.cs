@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class WalkieController : MonoBehaviour {
 
+    public Transform antennaTip;
+    public bool on = false;
+    public enum Team { RED, BLUE };
+    public Team playerTeam = Team.RED;
+
 	// Use this for initialization
 	void Start () {
 		
