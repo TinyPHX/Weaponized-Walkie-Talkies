@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 class PlayerManager : MonoBehaviour
 {
     public List<PlayerController> playerControllers = new List<PlayerController> { };
     public List<InputDevice> allInputDevices = new List<InputDevice> { };
     public List<InputDevice.ID> unassignedInputDevices = new List<InputDevice.ID> { };
+
+    public bool updateHealthSliders = true;
+    //public List<HealthDisplay> healthDisplays = new List;
 
     public void Start()
     {
@@ -19,12 +23,27 @@ class PlayerManager : MonoBehaviour
 
             allInputDevices.Add(inputDevice);
         }
+        if(updateHealthSliders)
+            UpdateHealthDisplays();
     }
 
     public void Update()
     {
         UpdateInputDeviceAssignments();
         RefreshInputDevices();
+        if(updateHealthSliders)
+            UpdateHealthDisplays();
+    }
+
+    private void UpdateHealthDisplays()
+    {
+        for (int i = 0; i < healthDisplays.Count; i++)
+        {
+            if (playerControllers.Count > i) {
+                healthDisplays[i].SetHealth(playerControllers[i].getHealth());
+                healthDisplays[i].maxHealth = playerControllers[i].getMaxHealth();
+            }
+        }
     }
     
     private void UpdateInputDeviceAssignments()

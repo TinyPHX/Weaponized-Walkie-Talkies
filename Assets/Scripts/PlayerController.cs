@@ -49,15 +49,27 @@ public class PlayerController : MonoBehaviour {
         this.health = health;
     }
 
+    public float getMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public void setMaxHealth(float maxHealth)
+    {
+        this.maxHealth = maxHealth;
+    }
+
     public void changeHealth(float amount) // negative or positive
     {
         if (this.health + amount > maxHealth)
         {
             this.health = maxHealth;
-        } else if (this.health + amount < 0)
+        }
+        else if (this.health + amount < 0)
         {
             this.health = 0;
-        } else
+        }
+        else
         {
             this.health += amount;
         }
