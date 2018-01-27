@@ -194,7 +194,7 @@ public class InputDevice
     [SerializeField] private ID id = ID.NONE;
     [SerializeField] private bool valid = false;
     public string name = "";
-    public LocalPlayer assigned = LocalPlayer.None;
+   // public LocalPlayer assigned = LocalPlayer.None;
 
     public InputDevice(ID id)
     {
