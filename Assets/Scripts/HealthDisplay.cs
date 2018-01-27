@@ -22,8 +22,11 @@ public class HealthDisplay: MonoBehaviour {
         yellowGreenCutoff = maxHealth * 0.7f;
 
         healthSlider.maxValue = maxHealth;
+    }
 
-        SetHealth(240.0f);    
+    public void Update()
+    {
+        healthSlider.maxValue = maxHealth;
     }
 
     public void SetHealth(float newHealth)

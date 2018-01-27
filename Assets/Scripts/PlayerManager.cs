@@ -10,7 +10,7 @@ class PlayerManager : MonoBehaviour
     public List<InputDevice.ID> unassignedInputDevices = new List<InputDevice.ID> { };
 
     public bool updateHealthSliders = true;
-    //public List<HealthDisplay> healthDisplays = new List;
+    public List<HealthDisplay> healthDisplays = new List<HealthDisplay>();
 
     public void Start()
     {
