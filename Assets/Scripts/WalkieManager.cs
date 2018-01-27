@@ -39,7 +39,7 @@ public class WalkieManager : MonoBehaviour {
                                 if (minimumEffectiveRange > 0 && antennaDistance <= minimumEffectiveRange)
                                     distanceMultiplier = ((-antennaDistance / minimumEffectiveRange) + 1);
                                 //Debug.Log("antennaDistance: " + antennaDistance + ", minimumEffectiveRange: " + minimumEffectiveRange + ", distanceMultiplier: " + distanceMultiplier);
-                                pc.health -= (((wc1.damage + wc2.damage) / 2) * Time.deltaTime * distanceMultiplier); // damage is averaged between two walkies, damage inflicted is per second, and damage is based on how close the two tips are
+                                pc.changeHealth(-(((wc1.damage + wc2.damage) / 2) * Time.deltaTime * distanceMultiplier)); // damage is averaged between two walkies, damage inflicted is per second, and damage is based on how close the two tips are
                             }
                         }
 

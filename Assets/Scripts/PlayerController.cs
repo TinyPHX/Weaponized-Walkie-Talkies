@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour {
     public float rotationDeadzone = 0.001f;
     private Vector2 inputRotation = Vector2.zero;
 
-    public float maxHealth = 250f;
-    public float health = 250f;
+    private float maxHealth = 250f;
+    private float health = 250f;
 
     public WalkieController.Team playerTeam = WalkieController.Team.RED;
 
@@ -32,6 +32,30 @@ public class PlayerController : MonoBehaviour {
             goalRotation = Quaternion.LookRotation(goalRotationVector);
         if (Mathf.Abs(inputRotation.x) >= rotationDeadzone || Mathf.Abs(inputRotation.y) >= rotationDeadzone) {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * move_speed);
+        }
+    }
+
+    public float getHealth()
+    {
+        return health;
+    }
+
+    public void setHealth(float health)
+    {
+        this.health = health;
+    }
+
+    public void changeHealth(float amount) // negative or positive
+    {
+        if (this.health + amount > maxHealth)
+        {
+            this.health = maxHealth;
+        } else if (this.health + amount < 0)
+        {
+            this.health = 0;
+        } else
+        {
+            this.health += amount;
         }
     }
 }
