@@ -30,26 +30,34 @@ class PlayerManager : MonoBehaviour
     private void UpdateInputDeviceAssignments()
     {
         //for each playerController 
-            //if playerController.inputDevice == null
-                //loop each allInputDevices
-                    //check if "A" pressed
-                        //playerController.inputDevice = curentInputDevice
+        //if playerController.inputDevice == null
+        //loop each allInputDevices
+        //check if "A" pressed
+        //playerController.inputDevice = curentInputDevice
+        InputDevice.ID idToRemove = InputDevice.ID.NONE;
         foreach (PlayerController pc in playerControllers) {
             if(pc.inputDevice == null)
             {
-                foreach (InputDevice.ID i in unassignedInputDevices)
+                foreach (InputDevice inputDevice in allInputDevices)
                 {
-                    foreach (InputDevice inputDevice in allInputDevices) {
+                    foreach (InputDevice.ID i in unassignedInputDevices) {
                         if (inputDevice != null && inputDevice.Id == i && inputDevice.GetAxis(InputDevice.GenericInputs.ACTION_1) > 0)
                         {
                             pc.inputDevice = inputDevice;
-                            unassignedInputDevices.Remove(pc.inputDevice.Id);
+                            //unassignedInputDevices.Remove(pc.inputDevice.Id);
+                            idToRemove = i;
+                            continue;
                         }
                     }
+                    if (idToRemove != InputDevice.ID.NONE)
+                        unassignedInputDevices.Remove(idToRemove);
+                    idToRemove = InputDevice.ID.NONE;
                 }
             }
 
         }
+
+        
     }
 
     private void RefreshInputDevices()
