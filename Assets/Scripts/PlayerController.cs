@@ -11,8 +11,13 @@ public class PlayerController : MonoBehaviour {
     public float rotationDeadzone = 0.001f;
     private Vector2 inputRotation = Vector2.zero;
 
-	// Use this for initialization
-	void Start () {
+    private float maxHealth = 250f;
+    private float health = 250f;
+
+    public WalkieController.Team playerTeam = WalkieController.Team.RED;
+
+    // Use this for initialization
+    void Start () {
         inputDevice = new InputDevice(InputDevice.ID.C2);
 	}
 	
@@ -20,8 +25,37 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         rigidBody.AddForce(new Vector3(inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_1_X), 0f, -inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_1_Y)) * Time.deltaTime * move_speed);
         inputRotation = new Vector2(inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_2_X), inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_2_Y));
+
+        Vector3 goalRotationVector = new Vector3(inputRotation.x, 0f, -inputRotation.y);
+        Quaternion goalRotation = new Quaternion();
+        if (goalRotationVector != Vector3.zero)
+            goalRotation = Quaternion.LookRotation(goalRotationVector);
         if (Mathf.Abs(inputRotation.x) >= rotationDeadzone || Mathf.Abs(inputRotation.y) >= rotationDeadzone) {
-            transform.rotation = Quaternion.LookRotation(new Vector3(inputRotation.x, 0f, inputRotation.y));
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * move_speed);
+        }
+    }
+
+    public float getHealth()
+    {
+        return health;
+    }
+
+    public void setHealth(float health)
+    {
+        this.health = health;
+    }
+
+    public void changeHealth(float amount) // negative or positive
+    {
+        if (this.health + amount > maxHealth)
+        {
+            this.health = maxHealth;
+        } else if (this.health + amount < 0)
+        {
+            this.health = 0;
+        } else
+        {
+            this.health += amount;
         }
     }
 }
