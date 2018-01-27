@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
         rigidBody.AddForce(new Vector3(inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_1_X), 0f, -inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_1_Y)) * Time.deltaTime * move_speed);
         inputRotation = new Vector2(inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_2_X), inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_2_Y));
         if (Mathf.Abs(inputRotation.x) >= rotationDeadzone || Mathf.Abs(inputRotation.y) >= rotationDeadzone) {
-            transform.rotation = Quaternion.LookRotation(new Vector3(inputRotation.x, 0f, inputRotation.y));
+            transform.rotation = Quaternion.LookRotation(new Vector3(inputRotation.x, 0f, -inputRotation.y));
         }
     }
 }
