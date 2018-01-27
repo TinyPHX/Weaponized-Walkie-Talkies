@@ -13,15 +13,17 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        inputDevice = new InputDevice(InputDevice.ID.C2);
+        inputDevice = new InputDevice(InputDevice.ID.C1);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         rigidBody.AddForce(new Vector3(inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_1_X), 0f, -inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_1_Y)) * Time.deltaTime * move_speed);
         inputRotation = new Vector2(inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_2_X), inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_2_Y));
+
+        Quaternion goalRotation = Quaternion.LookRotation(new Vector3(inputRotation.x, 0f, -inputRotation.y));
         if (Mathf.Abs(inputRotation.x) >= rotationDeadzone || Mathf.Abs(inputRotation.y) >= rotationDeadzone) {
-            transform.rotation = Quaternion.LookRotation(new Vector3(inputRotation.x, 0f, -inputRotation.y));
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * move_speed);
         }
     }
 }
