@@ -73,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786931365999718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.7, y: 0.53, z: -15.943}
+  m_LocalPosition: {x: 7.76, y: 0.53, z: -15.943}
   m_LocalScale: {x: 0.44137526, y: 0.2804326, z: 0.8970482}
   m_Children:
   - {fileID: 4297031467516924}
@@ -260,8 +260,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   antennaTip: {fileID: 4257537021016362}
-  on: 0
+  on: 1
   playerTeam: 0
+  maxPower: 240
+  power: 240
+  powerLoss: 5
+  damage: 30
+  effectiveRange: 5
+  onOffAxis: 7
 --- !u!135 &135648877463840900
 SphereCollider:
   m_ObjectHideFlags: 1

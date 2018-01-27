@@ -11,9 +11,14 @@ public class PlayerController : MonoBehaviour {
     public float rotationDeadzone = 0.001f;
     private Vector2 inputRotation = Vector2.zero;
 
-	// Use this for initialization
-	void Start () {
-        inputDevice = new InputDevice(InputDevice.ID.C1);
+    public float maxHealth = 250f;
+    public float health = 250f;
+
+    public WalkieController.Team playerTeam = WalkieController.Team.RED;
+
+    // Use this for initialization
+    void Start () {
+        inputDevice = new InputDevice(InputDevice.ID.C2);
 	}
 	
 	// Update is called once per frame
