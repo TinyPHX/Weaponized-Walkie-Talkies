@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public enum Teams { Aliens, Security }
 
-public class WinCondition : MonoBehaviour {
+public class GameManager : MonoBehaviour {
 
-    private PlayerManager playerManager;
+    public PlayerManager playerManager;
+    public Transform[] spawnPositions;
 
     public GameObject securityWinPanel;
     public GameObject aliensWinPanel;
@@ -49,8 +50,14 @@ public class WinCondition : MonoBehaviour {
 
     public void ResetGame()
     {
-        foreach (PlayerController player in playerManager.playerControllers)
+        for (int i = 0; i < playerManager.playerControllers.Count; i++)
         {
+            playerManager.playerControllers[i].transform.position = spawnPositions[i].position;
+            playerManager.playerControllers[i].ResetHealth();
+
+            // Because I don't want to check which panel is active
+            aliensWinPanel.SetActive(false);
+            securityWinPanel.SetActive(false);
         }
     }
 }

@@ -123,4 +123,9 @@ public class PlayerController : MonoBehaviour {
             this.health += amount;
         }
     }
+
+    public void ResetHealth()
+    {
+        health = maxHealth;
+    }
 }
