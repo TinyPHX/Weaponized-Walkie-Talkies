@@ -95,8 +95,6 @@ public class PlayerController : MonoBehaviour {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * move_speed);
         }
 
-        Debug.Log("inputMove.magnitude: " + inputMove.magnitude);
-
         playerAnimator.RunBlend = inputMove.magnitude;
         playerAnimator.SpeedMultiplier = inputMove.magnitude;
     }
