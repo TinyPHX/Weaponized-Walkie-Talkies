@@ -13,14 +13,6 @@ public class WalkieManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        if (updateBatterySliders)
-            UpdateBatterySliders();
-
         foreach (Signal s in signalEffectsRed)
         {
             s.GetComponent<LineRenderer>().enabled = false;
@@ -30,6 +22,12 @@ public class WalkieManager : MonoBehaviour {
         {
             s.GetComponent<LineRenderer>().enabled = false;
         }
+    }
+	
+	// Update is called once per frame
+	void Update () {
+        if (updateBatterySliders)
+            UpdateBatterySliders();
 
         foreach (WalkieController wc1 in walkieControllerList)
         {
@@ -61,27 +59,28 @@ public class WalkieManager : MonoBehaviour {
                             }
                         }
 
+                        if (wc1.playerTeam == WalkieController.Team.RED)
+                        {
+                            foreach (Signal s in signalEffectsRed)
+                            {
+                                s.GetComponent<LineRenderer>().enabled = true;
+                                s.transform.position = at1.transform.position;
+                                s.line.position = at2.transform.position;
+                            }
+                        }
+
+                        if (wc1.playerTeam == WalkieController.Team.BLUE)
+                        {
+                            foreach (Signal s in signalEffectsBlue)
+                            {
+                                s.GetComponent<LineRenderer>().enabled = true;
+                                s.transform.position = at1.transform.position;
+                                s.line.position = at2.transform.position;
+                            }
+                        }
+
                     }
 
-                    if (wc1.playerTeam == WalkieController.Team.RED)
-                    {
-                        foreach (Signal s in signalEffectsRed)
-                        {
-                            s.GetComponent<LineRenderer>().enabled = true;
-                            s.transform.position = at1.transform.position;
-                            s.line.position = at2.transform.position;
-                        }
-                    }
-
-                    if (wc1.playerTeam == WalkieController.Team.BLUE)
-                    {
-                        foreach (Signal s in signalEffectsBlue)
-                        {
-                            s.GetComponent<LineRenderer>().enabled = true;
-                            s.transform.position = at1.transform.position;
-                            s.line.position = at2.transform.position;
-                        }
-                    }
                 }
             }
         }
