@@ -2128,8 +2128,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1190836948880278}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.232}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4076202480960394}
   - {fileID: 4375332233355170}
@@ -2772,8 +2772,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkieAnimator: {fileID: 114325573093017002}
   antennaTip: {fileID: 4470276100656084}
-  on: 0
-  playerTeam: 0
+  on: 1
+  playerTeam: 1
   maxPower: 240
   power: 240
   powerLoss: 5
