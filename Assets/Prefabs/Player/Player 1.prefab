@@ -1309,7 +1309,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1873923877655916}
-  m_LocalRotation: {x: -0.26313734, y: -0.6797959, z: -0.3744438, w: 0.57308656}
+  m_LocalRotation: {x: -0.2631373, y: -0.67979586, z: -0.37444377, w: 0.5730865}
   m_LocalPosition: {x: 0.20904233, y: 0.68167585, z: 0.20621957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2690,8 +2690,6 @@ MonoBehaviour:
   maxPower: 240
   power: 240
   powerLoss: 5
-  damage: 30
-  effectiveRange: 10
   onMaterial: {fileID: 2100000, guid: 117ef09774fc6764497bf24b3e1b1b2d, type: 2}
   offMaterial: {fileID: 2100000, guid: d020a706180d0074ab489e46767a3b2f, type: 2}
 --- !u!114 &114411317034158270
@@ -2736,7 +2734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 114411317034158270}
-  activlyHeldWalkie: {fileID: 114407211372802872}
+  activelyHeldWalkie: {fileID: 114407211372802872}
   walkieAnchor: {fileID: 4891012087807030}
   move_speed: 1000
   rotate_speed: 1000
@@ -2767,7 +2765,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  jumpAxis: 11
+  grounded: 0
+  jumpLockLength: 1
+  jumpForce: 7
+  jumpMaskString: Everything
+  jumpDirection: {x: 0, y: 1, z: 0}
   maxHealth: 250
+  health: 250
   playerTeam: 1
 --- !u!136 &136768312764980552
 CapsuleCollider:

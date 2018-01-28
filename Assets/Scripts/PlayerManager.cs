@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     public List<PlayerController> playerControllers = new List<PlayerController> { };
     public List<InputDevice> allInputDevices = new List<InputDevice> { };

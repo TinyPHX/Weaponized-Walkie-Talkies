@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private float distanceToGround = .05f;
     private LayerMask jumpMask;
     public Vector3 jumpDirection = Vector3.up;
+    private bool dead = false;
 
     [SerializeField]
     private float maxHealth = 250f;
@@ -48,6 +49,20 @@ public class PlayerController : MonoBehaviour
     private float health = 250f;
 
     public WalkieController.Team playerTeam = WalkieController.Team.RED;
+    public Collider feetCollider;
+
+    public bool Dead
+    {
+        get
+        {
+            return dead;
+        }
+
+        set
+        {
+            value = dead;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -58,17 +73,34 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateWalkiePosition();
 
-        if (inputDevice != null)
+        if (!dead)
         {
-            UpdateInput();
+            UpdateWalkiePosition();
 
-            UpdateMovement();
-            UpdateWalkieAntenna();
+            if (inputDevice != null)
+            {
+                UpdateInput();
+
+                UpdateMovement();
+                UpdateWalkieAntenna();
+            }
+
+            UpdateJump();
+        }
+        else
+        {
+            if(activelyHeldWalkie != null)
+            {
+                activelyHeldWalkie.power = activelyHeldWalkie.maxPower;
+                activelyHeldWalkie.on = true;
+            }
         }
 
-        UpdateJump();
+        if(health <= 0)
+        {
+            dead = true;
+        }
     }
 
     public void UpdateWalkiePosition()
@@ -226,6 +258,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ResetHealth()
+    {
+        health = maxHealth;
+        dead = false;
+    }
+
     private void Jump()
     {
         if (Grounded && !jumpLock)
@@ -249,8 +287,13 @@ public class PlayerController : MonoBehaviour
     private bool CheckIfGrounded()
     {
         bool groundCheck = false;
+        Collider collider = collider = this.GetComponent<Collider>();
 
-        Collider collider = this.GetComponent<Collider>();
+        if(feetCollider != null)
+        {
+            collider = feetCollider;
+        }
+
 
         RaycastHit raycastHit = new RaycastHit();
         groundCheck = Physics.Raycast(

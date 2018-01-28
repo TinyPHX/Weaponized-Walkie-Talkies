@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public enum Teams { Aliens, Security }
 
-public class WinCondition : MonoBehaviour {
+public class GameManager : MonoBehaviour {
 
-    private PlayerManager playerManager;
+    public PlayerManager playerManager;
+    public Transform[] spawnPositions;
 
     public GameObject securityWinPanel;
     public GameObject aliensWinPanel;
@@ -16,19 +17,21 @@ public class WinCondition : MonoBehaviour {
     private bool gameInProgress;
 
     // Use this for initialization
-    void Start () {
-        SetWinner(Teams.Aliens);
+    void Start ()
+    {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-        // Reset when we have a game that has ended and 5 seconds have passed
-        if (!gameInProgress && Time.time > gameEndTime + 5f)
+	void Update ()
+    {
+
+        // Reset game when they press R AND game is over
+        if (Input.GetKeyDown("r") && !gameInProgress)
         {
             gameInProgress = true;
             ResetGame();
         }
+
 	}
 
     
@@ -44,13 +47,20 @@ public class WinCondition : MonoBehaviour {
         }
 
         gameEndTime = Time.time;
+        gameInProgress = false;
     }
 
 
     public void ResetGame()
     {
-        foreach (PlayerController player in playerManager.playerControllers)
+        for (int i = 0; i < playerManager.playerControllers.Count; i++)
         {
+            playerManager.playerControllers[i].transform.position = spawnPositions[i].position;
+            playerManager.playerControllers[i].ResetHealth();
+
+            // Because I don't want to check which panel is active
+            aliensWinPanel.SetActive(false);
+            securityWinPanel.SetActive(false);
         }
     }
 }

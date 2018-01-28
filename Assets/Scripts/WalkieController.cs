@@ -13,7 +13,8 @@ public class WalkieController : MonoBehaviour {
 
     public float maxPower = 240f;
     public float power = 240f;
-    public float powerLoss = 1f; // power lost per second
+    public float powerLoss = 5f; // power lost per second
+    public float powerGain = 5f; // power lost per second
 
     private MeshRenderer[] meshRenderers;
     public Material onMaterial;
@@ -52,6 +53,11 @@ public class WalkieController : MonoBehaviour {
                 {
                     mesh.material = offMaterial;
                 }
+            }
+
+            if (power < maxPower)
+            {
+                power += powerGain * Time.deltaTime;
             }
         }
 
