@@ -57,6 +57,12 @@ public class PlayerController : MonoBehaviour {
         {
             activlyHeldWalkie.transform.position = walkieAnchor.transform.position;
             activlyHeldWalkie.transform.rotation = walkieAnchor.transform.rotation;
+            
+            Rigidbody walkieRigidBody = activlyHeldWalkie.GetComponent<Rigidbody>();
+            if (walkieRigidBody != null)
+            {
+                walkieRigidBody.velocity = Vector3.zero;
+            }
         }
     }
 
