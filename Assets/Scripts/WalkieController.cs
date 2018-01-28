@@ -14,8 +14,6 @@ public class WalkieController : MonoBehaviour {
     public float maxPower = 240f;
     public float power = 240f;
     public float powerLoss = 1f; // power lost per second
-    public float damage = 30f; // damage done to playerController
-    public float effectiveRange = 5f;
 
     private MeshRenderer[] meshRenderers;
     public Material onMaterial;
