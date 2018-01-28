@@ -5,14 +5,32 @@ using UnityEngine;
 public class WalkieManager : MonoBehaviour {
 
     public List<WalkieController> walkieControllerList = new List<WalkieController>();
+    public List<Signal> signalEffectsRed = new List<Signal>();
+    public List<Signal> signalEffectsBlue = new List<Signal>();
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public bool updateBatterySliders = true;
+    public List<BatteryDisplay> batteryDisplays = new List<BatteryDisplay>();
+
+    // Use this for initialization
+    void Start () {
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (updateBatterySliders)
+            UpdateBatterySliders();
+
+        foreach (Signal s in signalEffectsRed)
+        {
+            s.GetComponent<LineRenderer>().enabled = false;
+        }
+
+        foreach (Signal s in signalEffectsBlue)
+        {
+            s.GetComponent<LineRenderer>().enabled = false;
+        }
+
         foreach (WalkieController wc1 in walkieControllerList)
         {
             foreach (WalkieController wc2 in walkieControllerList)
@@ -44,8 +62,40 @@ public class WalkieManager : MonoBehaviour {
                         }
 
                     }
+
+                    if (wc1.playerTeam == WalkieController.Team.RED)
+                    {
+                        foreach (Signal s in signalEffectsRed)
+                        {
+                            s.GetComponent<LineRenderer>().enabled = true;
+                            s.transform.position = at1.transform.position;
+                            s.line.position = at2.transform.position;
+                        }
+                    }
+
+                    if (wc1.playerTeam == WalkieController.Team.BLUE)
+                    {
+                        foreach (Signal s in signalEffectsBlue)
+                        {
+                            s.GetComponent<LineRenderer>().enabled = true;
+                            s.transform.position = at1.transform.position;
+                            s.line.position = at2.transform.position;
+                        }
+                    }
                 }
             }
         }
 	}
+
+    private void UpdateBatterySliders()
+    {
+        for (int i = 0; i < batteryDisplays.Count; i++)
+        {
+            if (walkieControllerList.Count > i)
+            {
+                batteryDisplays[i].SetValue(walkieControllerList[i].power);
+                batteryDisplays[i].maxValue = walkieControllerList[i].maxPower;
+            }
+        }
+    }
 }
