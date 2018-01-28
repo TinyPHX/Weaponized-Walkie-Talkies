@@ -694,72 +694,6 @@ Transform:
   m_Father: {fileID: 2099608212}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1124835634
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -3.1208746
-      objectReference: {fileID: 0}
-    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.17503357
-      objectReference: {fileID: 0}
-    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -2.457892
-      objectReference: {fileID: 0}
-    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114008266397509776, guid: 317a45529e52f8c4abae1391fab1e43a,
-        type: 2}
-      propertyPath: batteryDisplays.Array.data[0]
-      value: 
-      objectReference: {fileID: 1872543791}
-    - target: {fileID: 114008266397509776, guid: 317a45529e52f8c4abae1391fab1e43a,
-        type: 2}
-      propertyPath: batteryDisplays.Array.data[1]
-      value: 
-      objectReference: {fileID: 481017769}
-    - target: {fileID: 114008266397509776, guid: 317a45529e52f8c4abae1391fab1e43a,
-        type: 2}
-      propertyPath: batteryDisplays.Array.data[2]
-      value: 
-      objectReference: {fileID: 322943814}
-    - target: {fileID: 114008266397509776, guid: 317a45529e52f8c4abae1391fab1e43a,
-        type: 2}
-      propertyPath: batteryDisplays.Array.data[3]
-      value: 
-      objectReference: {fileID: 477076704}
-    - target: {fileID: 1328179462029554, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
-      propertyPath: m_Name
-      value: WalkieManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1167292356
 Prefab:
   m_ObjectHideFlags: 0
@@ -1156,6 +1090,72 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92be172b78d849c46b7789b56573c18e, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1551457393
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.1208746
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.17503357
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2.457892
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468162445955634, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114008266397509776, guid: 317a45529e52f8c4abae1391fab1e43a,
+        type: 2}
+      propertyPath: batteryDisplays.Array.data[0]
+      value: 
+      objectReference: {fileID: 1872543791}
+    - target: {fileID: 114008266397509776, guid: 317a45529e52f8c4abae1391fab1e43a,
+        type: 2}
+      propertyPath: batteryDisplays.Array.data[1]
+      value: 
+      objectReference: {fileID: 481017769}
+    - target: {fileID: 114008266397509776, guid: 317a45529e52f8c4abae1391fab1e43a,
+        type: 2}
+      propertyPath: batteryDisplays.Array.data[2]
+      value: 
+      objectReference: {fileID: 322943814}
+    - target: {fileID: 114008266397509776, guid: 317a45529e52f8c4abae1391fab1e43a,
+        type: 2}
+      propertyPath: batteryDisplays.Array.data[3]
+      value: 
+      objectReference: {fileID: 477076704}
+    - target: {fileID: 1328179462029554, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
+      propertyPath: m_Name
+      value: WalkieManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 317a45529e52f8c4abae1391fab1e43a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1566135447
 Prefab:

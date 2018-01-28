@@ -7,6 +7,10 @@ public class WalkieManager : MonoBehaviour {
     public List<WalkieController> walkieControllerList;
     public List<Signal> signalEffectsRed = new List<Signal>();
     public List<Signal> signalEffectsBlue = new List<Signal>();
+    public Transform startPointRed;
+    public Transform startPointBlue;
+    public Transform endPointRed;
+    public Transform endPointBlue;
 
     public bool updateBatterySliders = true;
     public List<BatteryDisplay> batteryDisplays = new List<BatteryDisplay>();
@@ -15,12 +19,12 @@ public class WalkieManager : MonoBehaviour {
     void Start () {
         foreach (Signal s in signalEffectsRed)
         {
-            s.GetComponent<LineRenderer>().enabled = false;
+            s.GetComponent<LineRenderer>().enabled = true;
         }
 
         foreach (Signal s in signalEffectsBlue)
         {
-            s.GetComponent<LineRenderer>().enabled = false;
+            s.GetComponent<LineRenderer>().enabled = true;
         }
 
         walkieControllerList = new List<WalkieController>(FindObjectsOfType<WalkieController>());
@@ -40,9 +44,8 @@ public class WalkieManager : MonoBehaviour {
                     Transform at1 = wc1.antennaTip;
                     Transform at2 = wc2.antennaTip;
                     float antennaDistance = Vector3.Distance(at1.position, at2.position);
-                    float minimumEffectiveRange = Mathf.Min(wc1.effectiveRange, wc2.effectiveRange);
 
-                    if (antennaDistance <= minimumEffectiveRange) // if walkie talkies are within the minimum of their two effective ranges
+                    if (antennaDistance <= 30) // this can change
                     {
                         RaycastHit[] hits;
                         hits = Physics.RaycastAll(at1.transform.position, at2.transform.position - at1.transform.position, Vector3.Distance(at1.transform.position, at2.transform.position)); // layermask can be added if needed
@@ -53,31 +56,28 @@ public class WalkieManager : MonoBehaviour {
                             PlayerController pc = hit.collider.GetComponent<PlayerController>();
                             if (pc != null && pc.playerTeam != wc1.playerTeam)
                             {
-                                float distanceMultiplier = 0; 
-                                if (minimumEffectiveRange > 0 && antennaDistance <= minimumEffectiveRange)
-                                    distanceMultiplier = ((-antennaDistance / minimumEffectiveRange) + 1);
-                                //Debug.Log("antennaDistance: " + antennaDistance + ", minimumEffectiveRange: " + minimumEffectiveRange + ", distanceMultiplier: " + distanceMultiplier);
-                                pc.changeHealth(-(((wc1.damage + wc2.damage) / 2) * Time.deltaTime * distanceMultiplier)); // damage is averaged between two walkies, damage inflicted is per second, and damage is based on how close the two tips are
+                                float distanceMultiplier = 1;
+                                pc.changeHealth(-(4 * Time.deltaTime * distanceMultiplier));
                             }
                         }
 
                         if (wc1.playerTeam == WalkieController.Team.RED)
                         {
+                            startPointRed.position = at1.position;
+                            endPointRed.position = at2.position;
                             foreach (Signal s in signalEffectsRed)
                             {
                                 s.GetComponent<LineRenderer>().enabled = true;
-                                s.transform.position = at1.transform.position;
-                                s.line.position = at2.transform.position;
                             }
                         }
 
                         if (wc1.playerTeam == WalkieController.Team.BLUE)
                         {
+                            startPointBlue.position = at1.position;
+                            endPointBlue.position = at2.position;
                             foreach (Signal s in signalEffectsBlue)
                             {
                                 s.GetComponent<LineRenderer>().enabled = true;
-                                s.transform.position = at1.transform.position;
-                                s.line.position = at2.transform.position;
                             }
                         }
 
@@ -86,7 +86,7 @@ public class WalkieManager : MonoBehaviour {
                 }
             }
         }
-	}
+    }
 
     private void UpdateBatterySliders()
     {

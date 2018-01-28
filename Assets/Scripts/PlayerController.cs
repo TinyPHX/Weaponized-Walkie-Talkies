@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
 
 
     [SerializeField] private float maxHealth = 250f;
-    private float health = 250f;
+    [SerializeField] private float health = 250f;
 
     public WalkieController.Team playerTeam = WalkieController.Team.RED;
 

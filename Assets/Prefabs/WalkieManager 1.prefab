@@ -78,14 +78,14 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1544868609485786
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4361010823743704}
   m_Layer: 0
-  m_Name: End
+  m_Name: EndBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,14 +144,14 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1844308079145070
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4808993558151378}
   m_Layer: 0
-  m_Name: End
+  m_Name: EndRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,12 +221,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1544868609485786}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.5108747, y: 0.17503357, z: 2.457892}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4570289634579498}
-  m_RootOrder: 3
+  m_Father: {fileID: 4468162445955634}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4468162445955634
 Transform:
@@ -238,6 +238,8 @@ Transform:
   m_LocalPosition: {x: -3.1208746, y: -0.17503357, z: -2.457892}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4361010823743704}
+  - {fileID: 4808993558151378}
   - {fileID: 4570289634579498}
   - {fileID: 4525840834404522}
   m_Father: {fileID: 0}
@@ -256,9 +258,8 @@ Transform:
   - {fileID: 4226850983831740}
   - {fileID: 4975293655743302}
   - {fileID: 4607173966992608}
-  - {fileID: 4808993558151378}
   m_Father: {fileID: 4468162445955634}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4570289634579498
 Transform:
@@ -273,9 +274,8 @@ Transform:
   - {fileID: 4956342386566462}
   - {fileID: 4982430185253810}
   - {fileID: 4354060463364690}
-  - {fileID: 4361010823743704}
   m_Father: {fileID: 4468162445955634}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4607173966992608
 Transform:
@@ -296,12 +296,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1844308079145070}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.155878, y: 0.7858827, z: 5.273369}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.6450033, y: 0.9609163, z: 7.731261}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4525840834404522}
-  m_RootOrder: 3
+  m_Father: {fileID: 4468162445955634}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4956342386566462
 Transform:
@@ -362,6 +362,10 @@ MonoBehaviour:
   - {fileID: 114550861053544680}
   - {fileID: 114477182445384954}
   - {fileID: 114097547849442802}
+  startPointRed: {fileID: 4525840834404522}
+  startPointBlue: {fileID: 4570289634579498}
+  endPointRed: {fileID: 4808993558151378}
+  endPointBlue: {fileID: 4361010823743704}
   updateBatterySliders: 1
   batteryDisplays:
   - {fileID: 0}
