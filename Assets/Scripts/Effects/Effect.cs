@@ -16,8 +16,8 @@ public class Effect : MonoBehaviour
     [SerializeField] private bool loop = false;
     [SerializeField] private int loopCount = 0;
     [SerializeField] private float loopTime = 0;
-    public bool destroyAfterComplete = true;
-    [SerializeField] private bool useColor = true;
+    public bool destroyAfterComplete = false;
+    [SerializeField] private bool useColor = false;
     [SerializeField] private Color color = Color.black;
 
     [Header(" --- AUDIO EFFECTS --- ")]
@@ -26,7 +26,7 @@ public class Effect : MonoBehaviour
     public bool randomizeClip = false;
     public float pitchMin = 1;
     public float pitchMax = 1;
-    public bool pitchChangeOverTime = true;
+    public bool pitchChangeOverTime = false;
     public bool randomizePitch = false;
     public bool forceOneShot = false; //Play audio once, even when looping. 
     private float volumeScale = 1;
