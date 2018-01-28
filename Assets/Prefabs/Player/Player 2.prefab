@@ -65,6 +65,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4470276100656084}
+  - component: {fileID: 108963656180979504}
   m_Layer: 0
   m_Name: Antenna Tip
   m_TagString: Untagged
@@ -787,7 +788,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4705401507026262}
-  - component: {fileID: 114455856501263460}
   - component: {fileID: 114835685950646622}
   - component: {fileID: 54383000959333416}
   m_Layer: 0
@@ -1579,7 +1579,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1078417660822954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4728422467233538}
@@ -2160,7 +2160,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508845715416120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.676, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4261292278859448}
@@ -2624,6 +2624,42 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!108 &108963656180979504
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1078417660822954}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 0, g: 0.006896496, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 0.2
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!114 &114023333720704486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2677,6 +2713,26 @@ MonoBehaviour:
     name: 
   rigidBody: {fileID: 54167298581373098}
   rotationDeadzone: 0.1
+  altAntennaControl: 1
+  antennaSpeed: 10
+  antennaSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   maxHealth: 250
   playerTeam: 1
 --- !u!114 &114325573093017002
@@ -2691,18 +2747,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95160578073703788, guid: e468cf66778887a4689bb73e374ae2a8, type: 2}
---- !u!114 &114455856501263460
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1724931732405996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc9fe4fab2251f4e9623e99aeea54d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &114729120880072156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2726,8 +2770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7c4b32a14c0f849b03d14982e90c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkieAnimator: {fileID: 0}
-  antennaTip: {fileID: 0}
+  walkieAnimator: {fileID: 114325573093017002}
+  antennaTip: {fileID: 4470276100656084}
   on: 0
   playerTeam: 0
   maxPower: 240
@@ -2735,12 +2779,8 @@ MonoBehaviour:
   powerLoss: 5
   damage: 30
   effectiveRange: 10
-  inputDevice:
-    type: 0
-    id: 0
-    valid: 0
-    name: 
-  onOffAxis: 7
+  onMaterial: {fileID: 2100000, guid: 117ef09774fc6764497bf24b3e1b1b2d, type: 2}
+  offMaterial: {fileID: 2100000, guid: d020a706180d0074ab489e46767a3b2f, type: 2}
 --- !u!136 &136565264711628682
 CapsuleCollider:
   m_ObjectHideFlags: 1

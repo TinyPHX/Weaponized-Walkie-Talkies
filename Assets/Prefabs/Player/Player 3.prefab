@@ -275,6 +275,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4941347741048030}
+  - component: {fileID: 108502245059914640}
   m_Layer: 0
   m_Name: Antenna Tip
   m_TagString: Untagged
@@ -759,7 +760,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4217219584222442}
-  - component: {fileID: 114491102207746674}
   - component: {fileID: 114734234129090212}
   - component: {fileID: 54403216841174850}
   m_Layer: 0
@@ -2081,7 +2081,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1056579721783196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4405922963737024}
@@ -2109,7 +2109,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1927585413283182}
-  m_LocalRotation: {x: -0.26313734, y: -0.6797959, z: -0.3744438, w: 0.57308656}
+  m_LocalRotation: {x: -0.2631373, y: -0.67979586, z: -0.37444377, w: 0.5730865}
   m_LocalPosition: {x: 0.20904233, y: 0.68167585, z: 0.20621957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2123,7 +2123,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258825247762678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4825847023004558}
@@ -2624,6 +2624,42 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!108 &108502245059914640
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258825247762678}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Intensity: 1
+  m_Range: 0.2
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!114 &114036992535166884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2678,18 +2714,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114491102207746674
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1641917714921420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc9fe4fab2251f4e9623e99aeea54d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &114734234129090212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2701,8 +2725,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7c4b32a14c0f849b03d14982e90c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkieAnimator: {fileID: 0}
-  antennaTip: {fileID: 0}
+  walkieAnimator: {fileID: 114036992535166884}
+  antennaTip: {fileID: 4941347741048030}
   on: 0
   playerTeam: 0
   maxPower: 240
@@ -2710,6 +2734,8 @@ MonoBehaviour:
   powerLoss: 5
   damage: 30
   effectiveRange: 10
+  onMaterial: {fileID: 2100000, guid: 117ef09774fc6764497bf24b3e1b1b2d, type: 2}
+  offMaterial: {fileID: 2100000, guid: d020a706180d0074ab489e46767a3b2f, type: 2}
 --- !u!114 &114825422946260032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2733,6 +2759,26 @@ MonoBehaviour:
     name: 
   rigidBody: {fileID: 54868184621673496}
   rotationDeadzone: 0.1
+  altAntennaControl: 1
+  antennaSpeed: 20
+  antennaSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   maxHealth: 250
   playerTeam: 1
 --- !u!136 &136261608702687060
