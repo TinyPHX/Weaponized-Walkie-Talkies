@@ -8,6 +8,7 @@ public enum Teams { Aliens, Security }
 public class GameManager : MonoBehaviour {
 
     public PlayerManager playerManager;
+    public WalkieManager walkieManager;
     public Transform[] spawnPositions;
 
     public GameObject securityWinPanel;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour {
             ResetGame();
         }
 
+        CheckForWinner();
 	}
 
     
@@ -57,6 +59,16 @@ public class GameManager : MonoBehaviour {
         {
             playerManager.playerControllers[i].transform.position = spawnPositions[i].position;
             playerManager.playerControllers[i].ResetHealth();
+
+            // Because I don't want to check which panel is active
+            aliensWinPanel.SetActive(false);
+            securityWinPanel.SetActive(false);
+        }
+
+        for (int i = 0; i < walkieManager.walkieControllerList.Count; i++)
+        {
+            walkieManager.walkieControllerList[i].on = false;
+            walkieManager.walkieControllerList[i].power = walkieManager.walkieControllerList[i].maxPower;
 
             // Because I don't want to check which panel is active
             aliensWinPanel.SetActive(false);
