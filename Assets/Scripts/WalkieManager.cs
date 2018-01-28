@@ -132,17 +132,14 @@ public class WalkieManager : MonoBehaviour {
                                 if (antennaDistance < beamCutoffs[0])
                                 {
                                     numBeams = intervalNumBeams[0];
-                                    Debug.Log("Interval1");
                                 }
                                 if (antennaDistance >= beamCutoffs[0] && antennaDistance <= beamCutoffs[1])
                                 {
                                     numBeams = intervalNumBeams[1];
-                                    Debug.Log("Interval2");
                                 }
                                 if (antennaDistance >= beamCutoffs[1])
                                 {
                                     numBeams = intervalNumBeams[2];
-                                    Debug.Log("Interval3");
                                 }
 
                                 for (int i = 0; i < numBeams; i++)
