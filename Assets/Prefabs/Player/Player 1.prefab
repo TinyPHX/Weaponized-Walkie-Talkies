@@ -518,6 +518,7 @@ GameObject:
   - component: {fileID: 114707833481026618}
   - component: {fileID: 54644031202375368}
   - component: {fileID: 136948331108258312}
+  - component: {fileID: 136768312764980552}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -1308,7 +1309,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1873923877655916}
-  m_LocalRotation: {x: -0.2631373, y: -0.67979586, z: -0.37444377, w: 0.5730865}
+  m_LocalRotation: {x: -0.26313734, y: -0.6797959, z: -0.3744438, w: 0.57308656}
   m_LocalPosition: {x: 0.20904233, y: 0.68167585, z: 0.20621957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1742,8 +1743,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1076543809491118}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0, y: 0, z: -0.232}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4340599199859982}
   - {fileID: 4518986738330754}
@@ -2684,8 +2685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkieAnimator: {fileID: 114043945426585452}
   antennaTip: {fileID: 4831704415300904}
-  on: 0
-  playerTeam: 0
+  on: 1
+  playerTeam: 1
   maxPower: 240
   power: 240
   powerLoss: 5
@@ -2768,7 +2769,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   maxHealth: 250
   playerTeam: 1
---- !u!136 &136948331108258312
+--- !u!136 &136768312764980552
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2777,10 +2778,23 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 4d9448d7336ff7044bd914eae5c034d0, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1.4014275
+  m_Radius: 0.1
+  m_Height: 0.2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.70071375, z: 0}
+  m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!136 &136948331108258312
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1374151409221380}
+  m_Material: {fileID: 13400000, guid: 38402111d2c86bf4fa31e008167b256d, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1.2076399
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.79760754, z: 0}
 --- !u!137 &137339773334627306
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
