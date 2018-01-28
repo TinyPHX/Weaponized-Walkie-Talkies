@@ -67,7 +67,23 @@ public class WalkieManager : MonoBehaviour {
                                     {
                                         float damage = 0;
 
-                                        if(antennaDistance < beamCutoffs[0])
+                                        if (wc1.playerTeam == WalkieController.Team.RED)
+                                        {
+                                            foreach (Signal s in signalEffectsRed)
+                                            {
+                                                s.GetComponent<LineRenderer>();
+                                            }
+                                        }
+
+                                        if (wc1.playerTeam == WalkieController.Team.BLUE)
+                                        {
+                                            foreach (Signal s in signalEffectsBlue)
+                                            {
+                                                s.GetComponent<LineRenderer>();
+                                            }
+                                        }
+
+                                        if (antennaDistance < beamCutoffs[0])
                                         {
                                             damage = beamIntervalDamages[0];
                                         }
