@@ -63,4 +63,34 @@ public class GameManager : MonoBehaviour {
             securityWinPanel.SetActive(false);
         }
     }
+
+    public void CheckForWinner()
+    {
+        int redDeaths = 0;
+        int blueDeaths = 0;
+        foreach(PlayerController pc in playerManager.playerControllers)
+        {
+            if(pc.Dead)
+            {
+                if(pc.playerTeam == WalkieController.Team.RED)
+                {
+                    redDeaths++;
+                }
+                if (pc.playerTeam == WalkieController.Team.BLUE)
+                {
+                    blueDeaths++;
+                }
+            }
+
+            if (redDeaths == 2 && blueDeaths != 2)
+            {
+                SetWinner(Teams.Security);
+            }
+
+            if (blueDeaths == 2 && redDeaths != 2)
+            {
+                SetWinner(Teams.Aliens);
+            }
+        }
+    }
 }
