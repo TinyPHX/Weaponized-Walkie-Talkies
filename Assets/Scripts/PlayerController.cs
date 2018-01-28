@@ -235,6 +235,8 @@ public class PlayerController : MonoBehaviour
         if (inputDevice != null)
             jump_axis = inputDevice.GetAxis(jumpAxis);
 
+        Debug.Log("jump_axis: " + jump_axis);
+
         bool newGrounded = CheckIfGrounded();
 
         if (jumpLock && Time.time - lastJumpTime > jumpLockLength && jump_axis == 0)

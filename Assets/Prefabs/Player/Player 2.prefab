@@ -159,7 +159,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4480293864913454}
-  - component: {fileID: 114729120880072156}
   - component: {fileID: 114325573093017002}
   m_Layer: 0
   m_Name: Walkie Animator
@@ -968,6 +967,7 @@ GameObject:
   - component: {fileID: 114165521872842820}
   - component: {fileID: 54167298581373098}
   - component: {fileID: 136565264711628682}
+  - component: {fileID: 136341755946382878}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -2159,15 +2159,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508845715416120}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4261292278859448}
   - {fileID: 4705401507026262}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4983646900608652
 Transform:
   m_ObjectHideFlags: 1
@@ -2742,6 +2742,7 @@ MonoBehaviour:
   maxHealth: 250
   health: 250
   playerTeam: 1
+  feetCollider: {fileID: 136341755946382878}
 --- !u!114 &114325573093017002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2753,19 +2754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ff3d882213dfd4b9f4de5327c21b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
---- !u!114 &114729120880072156
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1237608106572228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc9fe4fab2251f4e9623e99aeea54d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  animator: {fileID: 95854454183614042}
 --- !u!114 &114835685950646622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2779,14 +2768,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkieAnimator: {fileID: 114325573093017002}
   antennaTip: {fileID: 4470276100656084}
-  on: 1
+  on: 0
   playerTeam: 1
   maxPower: 240
   power: 240
   powerLoss: 5
+  powerGain: 5
   onMaterial: {fileID: 2100000, guid: 117ef09774fc6764497bf24b3e1b1b2d, type: 2}
   offMaterial: {fileID: 2100000, guid: d020a706180d0074ab489e46767a3b2f, type: 2}
---- !u!136 &136565264711628682
+--- !u!136 &136341755946382878
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2795,10 +2785,23 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 4d9448d7336ff7044bd914eae5c034d0, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1.4014275
+  m_Radius: 0.1
+  m_Height: 0.2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.70071375, z: 0}
+  m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!136 &136565264711628682
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920631498716902}
+  m_Material: {fileID: 13400000, guid: 38402111d2c86bf4fa31e008167b256d, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1.2076399
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.79760754, z: 0}
 --- !u!137 &137688973707562492
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

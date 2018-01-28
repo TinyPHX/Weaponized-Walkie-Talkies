@@ -481,7 +481,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4725740599191002}
-  - component: {fileID: 114123250135410506}
   - component: {fileID: 114036992535166884}
   m_Layer: 0
   m_Name: Walkie Animator
@@ -2080,15 +2079,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1056579721783196}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4405922963737024}
   - {fileID: 4217219584222442}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4886773815080554
 Transform:
   m_ObjectHideFlags: 1
@@ -2671,19 +2670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ff3d882213dfd4b9f4de5327c21b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
---- !u!114 &114123250135410506
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1426302108612542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc9fe4fab2251f4e9623e99aeea54d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  animator: {fileID: 95392807792450812}
 --- !u!114 &114458651054051148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2727,11 +2714,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkieAnimator: {fileID: 114036992535166884}
   antennaTip: {fileID: 4941347741048030}
-  on: 1
+  on: 0
   playerTeam: 0
   maxPower: 240
   power: 240
   powerLoss: 5
+  powerGain: 5
   onMaterial: {fileID: 2100000, guid: 117ef09774fc6764497bf24b3e1b1b2d, type: 2}
   offMaterial: {fileID: 2100000, guid: d020a706180d0074ab489e46767a3b2f, type: 2}
 --- !u!114 &114825422946260032
@@ -2786,19 +2774,20 @@ MonoBehaviour:
   maxHealth: 250
   health: 250
   playerTeam: 0
+  feetCollider: {fileID: 136261608702687060}
 --- !u!136 &136261608702687060
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1273708809323552}
-  m_Material: {fileID: 13400000, guid: 4d9448d7336ff7044bd914eae5c034d0, type: 2}
+  m_Material: {fileID: 13400000, guid: 38402111d2c86bf4fa31e008167b256d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
-  m_Height: 1.4014275
+  m_Height: 1.2076399
   m_Direction: 1
-  m_Center: {x: 0, y: 0.70071375, z: 0}
+  m_Center: {x: 0, y: 0.79760754, z: 0}
 --- !u!137 &137860783163094230
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
