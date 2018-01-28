@@ -57,7 +57,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   allInputDevices: []
-  unassignedInputDevices: 030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000
+  unassignedInputDevices: 
   updateHealthSliders: 1
   healthDisplays:
   - {fileID: 0}
