@@ -67,7 +67,7 @@ public class WalkieManager : MonoBehaviour {
                                     {
                                         float damage = 0;
 
-                                        if (wc1.playerTeam == WalkieController.Team.RED)
+                                        if (wc1.playerTeam == WalkieController.Team.RED) // 
                                         {
                                             foreach (Signal s in signalEffectsRed)
                                             {
@@ -75,7 +75,7 @@ public class WalkieManager : MonoBehaviour {
                                             }
                                         }
 
-                                        if (wc1.playerTeam == WalkieController.Team.BLUE)
+                                        if (wc1.playerTeam == WalkieController.Team.BLUE) // 
                                         {
                                             foreach (Signal s in signalEffectsBlue)
                                             {
