@@ -2109,7 +2109,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1927585413283182}
-  m_LocalRotation: {x: -0.2631373, y: -0.67979586, z: -0.37444377, w: 0.5730865}
+  m_LocalRotation: {x: -0.26313734, y: -0.6797959, z: -0.3744438, w: 0.57308656}
   m_LocalPosition: {x: 0.20904233, y: 0.68167585, z: 0.20621957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2671,7 +2671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ff3d882213dfd4b9f4de5327c21b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 95160578073703788, guid: e468cf66778887a4689bb73e374ae2a8, type: 2}
+  animator: {fileID: 0}
 --- !u!114 &114123250135410506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2683,7 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc9fe4fab2251f4e9623e99aeea54d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1166827452998748, guid: e468cf66778887a4689bb73e374ae2a8, type: 2}
+  prefab: {fileID: 0}
 --- !u!114 &114458651054051148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2732,8 +2732,6 @@ MonoBehaviour:
   maxPower: 240
   power: 240
   powerLoss: 5
-  damage: 30
-  effectiveRange: 10
   onMaterial: {fileID: 2100000, guid: 117ef09774fc6764497bf24b3e1b1b2d, type: 2}
   offMaterial: {fileID: 2100000, guid: d020a706180d0074ab489e46767a3b2f, type: 2}
 --- !u!114 &114825422946260032
@@ -2748,7 +2746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 114458651054051148}
-  activlyHeldWalkie: {fileID: 114734234129090212}
+  activelyHeldWalkie: {fileID: 114734234129090212}
   walkieAnchor: {fileID: 4256319974393022}
   move_speed: 1000
   rotate_speed: 1000
@@ -2779,7 +2777,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  jumpAxis: 11
+  grounded: 0
+  jumpLockLength: 1
+  jumpForce: 7
+  jumpMaskString: Everything
+  jumpDirection: {x: 0, y: 1, z: 0}
   maxHealth: 250
+  health: 250
   playerTeam: 0
 --- !u!136 &136261608702687060
 CapsuleCollider:
