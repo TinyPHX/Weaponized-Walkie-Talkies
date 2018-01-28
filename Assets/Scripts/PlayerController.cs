@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     public PlayerAnimator playerAnimator;
-    public WalkieController activlyHeldWalkie;
+    public WalkieController activelyHeldWalkie;
     public Transform walkieAnchor;
 
     public float move_speed = 10f; // units per second
     public float rotate_speed = 10f; // degrees per second
-    [HideInInspector] public InputDevice inputDevice;
+    [HideInInspector]
+    public InputDevice inputDevice;
     public Rigidbody rigidBody;
     public float rotationDeadzone = 0.001f;
 
     public bool altAntennaControl = false;
     public float antennaSpeed = 10;
     public AnimationCurve antennaSpeedCurve;
+
+    public InputDevice.GenericInputs jumpAxis = InputDevice.GenericInputs.ACTION_1; // a
 
     //Input
     private Vector2 inputMove = Vector2.zero;
@@ -27,19 +31,33 @@ public class PlayerController : MonoBehaviour {
     private float inputAntennaOut;
     private float inputAntennaIn;
 
+    private bool jumpLock = false;
+    private float lastJumpTime = 0f;
+    [SerializeField]
+    private bool grounded = false;
+    public float jumpLockLength = 1f;
+    public float jumpForce = 7f;
+    public string jumpMaskString = "Everything";
+    private float distanceToGround = .05f;
+    private LayerMask jumpMask;
+    public Vector3 jumpDirection = Vector3.up;
 
-    [SerializeField] private float maxHealth = 250f;
-    [SerializeField] private float health = 250f;
+    [SerializeField]
+    private float maxHealth = 250f;
+    [SerializeField]
+    private float health = 250f;
 
     public WalkieController.Team playerTeam = WalkieController.Team.RED;
 
     // Use this for initialization
-    void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+        jumpMask = LayerMask.NameToLayer(jumpMaskString);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         UpdateWalkiePosition();
 
         if (inputDevice != null)
@@ -49,16 +67,18 @@ public class PlayerController : MonoBehaviour {
             UpdateMovement();
             UpdateWalkieAntenna();
         }
+
+        UpdateJump();
     }
 
     public void UpdateWalkiePosition()
     {
-        if (activlyHeldWalkie != null)
+        if (activelyHeldWalkie != null)
         {
-            activlyHeldWalkie.transform.position = walkieAnchor.transform.position;
-            activlyHeldWalkie.transform.rotation = walkieAnchor.transform.rotation;
-            
-            Rigidbody walkieRigidBody = activlyHeldWalkie.GetComponent<Rigidbody>();
+            activelyHeldWalkie.transform.position = walkieAnchor.transform.position;
+            activelyHeldWalkie.transform.rotation = walkieAnchor.transform.rotation;
+
+            Rigidbody walkieRigidBody = activelyHeldWalkie.GetComponent<Rigidbody>();
             if (walkieRigidBody != null)
             {
                 walkieRigidBody.velocity = Vector3.zero;
@@ -97,7 +117,7 @@ public class PlayerController : MonoBehaviour {
         if (goalRotationVector != Vector3.zero)
         {
             goalRotation = Quaternion.LookRotation(goalRotationVector);
-                
+
             transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * move_speed);
         }
 
@@ -107,22 +127,22 @@ public class PlayerController : MonoBehaviour {
 
     private void UpdateWalkieAntenna()
     {
-        if (activlyHeldWalkie != null)
+        if (activelyHeldWalkie != null)
         {
             if (altAntennaControl)
             {
-                float newAntennaLenngth = activlyHeldWalkie.AntennaLength + 
+                float newAntennaLenngth = activelyHeldWalkie.AntennaLength +
                     ((antennaSpeedCurve.Evaluate(inputAntennaOut) - antennaSpeedCurve.Evaluate(inputAntennaIn)) * Time.deltaTime * antennaSpeed);
-                activlyHeldWalkie.AntennaLength = Mathf.Clamp(newAntennaLenngth, 0, 1);
+                activelyHeldWalkie.AntennaLength = Mathf.Clamp(newAntennaLenngth, 0, 1);
             }
             else
             {
-                activlyHeldWalkie.AntennaLength = inputLook.magnitude;
+                activelyHeldWalkie.AntennaLength = inputLook.magnitude;
             }
 
             if (inputToggleWalkieOn > 0 && inputPreviousToggleWalkieOn == 0)
             {
-                activlyHeldWalkie.on = !activlyHeldWalkie.on;
+                activelyHeldWalkie.on = !activelyHeldWalkie.on;
             }
         }
     }
@@ -161,5 +181,84 @@ public class PlayerController : MonoBehaviour {
         {
             this.health += amount;
         }
+    }
+
+    public bool Grounded
+    {
+        get
+        {
+            return grounded;
+        }
+
+        set
+        {
+            grounded = value;
+        }
+    }
+
+    private void UpdateJump()
+    {
+
+        float jump_axis = 0;
+        if (inputDevice != null)
+            jump_axis = inputDevice.GetAxis(jumpAxis);
+
+        bool newGrounded = CheckIfGrounded();
+
+        if (jumpLock && Time.time - lastJumpTime > jumpLockLength && jump_axis == 0)
+        {
+            jumpLock = false;
+        }
+
+        if (!jumpLock)
+        {
+            if (newGrounded && !Grounded)
+            {
+                jump_axis = 0;
+            }
+
+            Grounded = newGrounded;
+        }
+
+        if (jump_axis > 0)
+        {
+            Jump();
+        }
+    }
+
+    private void Jump()
+    {
+        if (Grounded && !jumpLock)
+        {
+            Vector3 jumpVelocity = jumpDirection * (jumpForce);
+
+            rigidBody.velocity += jumpVelocity;
+            //animationController.TriggerJump = true;
+            Grounded = false;
+            jumpLock = true;
+            lastJumpTime = Time.time;
+
+            //jumpEffect.transform.position = transform.position;
+            //jumpEffect.Play();
+        }
+    }
+
+    /// <summary>
+    /// Determins wheather the player collider is on the ground.
+    /// </summary>
+    private bool CheckIfGrounded()
+    {
+        bool groundCheck = false;
+
+        Collider collider = this.GetComponent<Collider>();
+
+        RaycastHit raycastHit = new RaycastHit();
+        groundCheck = Physics.Raycast(
+            new Ray(collider.bounds.center, Vector3.down),
+            out raycastHit,
+            collider.bounds.size.y / 2 + distanceToGround,
+            jumpMask);
+
+        return groundCheck;
     }
 }
