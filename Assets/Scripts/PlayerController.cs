@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
     private Vector2 inputMove = Vector2.zero;
     private Vector2 inputLook = Vector2.zero;
 
-    private float maxHealth = 250f;
+    [SerializeField] private float maxHealth = 250f;
     private float health = 250f;
 
     public WalkieController.Team playerTeam = WalkieController.Team.RED;
