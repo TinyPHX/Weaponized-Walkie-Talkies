@@ -15,7 +15,6 @@ public class BatteryDisplay : MonoBehaviour {
     // Use this for initialization
     void Start () {
         batterySlider.maxValue = maxValue;
-        SetValue(40);
 	}
 
 	
