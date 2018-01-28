@@ -22,11 +22,13 @@ public class HealthDisplay: MonoBehaviour {
         yellowGreenCutoff = maxHealth * 0.7f;
 
         healthSlider.maxValue = maxHealth;
+        healthSlider.value = maxHealth;
     }
 
     public void Update()
     {
         healthSlider.maxValue = maxHealth;
+       
     }
 
     public void SetHealth(float newHealth)
@@ -40,10 +42,6 @@ public class HealthDisplay: MonoBehaviour {
         if (newHealth <= redYellowCutoff)
         {
             healthBarImage.color = lowHealthColor;
-        }
-        else if (newHealth > redYellowCutoff && newHealth < yellowGreenCutoff)
-        {
-            healthBarImage.color = mediumHealthColor;
         }
         else
         {
