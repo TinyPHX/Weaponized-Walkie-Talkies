@@ -23,13 +23,14 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-        // Reset when we have a game that has ended and 5 seconds have passed
-        if (!gameInProgress && Time.time > gameEndTime + 5f)
+
+        // Reset game when they press R AND game is over
+        if (Input.GetKeyDown("r") && !gameInProgress)
         {
             gameInProgress = true;
             ResetGame();
         }
+
 	}
 
     
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour {
         }
 
         gameEndTime = Time.time;
+        gameInProgress = false;
     }
 
 
