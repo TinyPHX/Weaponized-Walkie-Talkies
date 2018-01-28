@@ -226,6 +226,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ResetHealth(float newHealth)
+    {
+        health = newHealth;
+    }
+
     private void Jump()
     {
         if (Grounded && !jumpLock)
