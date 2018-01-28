@@ -14,13 +14,15 @@ public class BatteryDisplay : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        batterySlider.maxValue = maxValue;
+        if (batterySlider != null)
+            batterySlider.maxValue = maxValue;
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
-        batterySlider.maxValue = maxValue;
+        if(batterySlider != null)
+            batterySlider.maxValue = maxValue;
         healthBarImage.color = fillColor;
     }
 

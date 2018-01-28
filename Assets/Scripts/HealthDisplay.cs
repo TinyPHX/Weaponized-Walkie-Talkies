@@ -28,8 +28,7 @@ public class HealthDisplay: MonoBehaviour {
 
     public void Update()
     {
-        if(healthSlider != null)
-            healthSlider.maxValue = maxHealth;
+        healthSlider.maxValue = maxHealth;
        
     }
 

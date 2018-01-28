@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7747395ae3972d443afedaca43d0f765
-timeCreated: 1517092008
+guid: f68275d717c23574da016a02ed4d3e85
+timeCreated: 1517097408
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -61,8 +61,9 @@ ModelImporter:
     100106: Character1_RightUpLeg
     100108: Character1_Spine
     100110: Character1_Spine1
-    100112: SecurityGuard_mesh
-    100114: //RootNode
+    100112: //RootNode
+    100114: SecurityGuard_mesh
+    100116: Alien_mesh
     400000: Character1_Ctrl_ChestEndEffector
     400002: Character1_Ctrl_ChestOriginEffector
     400004: Character1_Ctrl_Head
@@ -119,14 +120,17 @@ ModelImporter:
     400106: Character1_RightUpLeg
     400108: Character1_Spine
     400110: Character1_Spine1
-    400112: SecurityGuard_mesh
-    400114: //RootNode
+    400112: //RootNode
+    400114: SecurityGuard_mesh
+    400116: Alien_mesh
     4300000: SecurityGuard_mesh
-    7400000: runAnimation
+    4300002: Alien_mesh
+    7400000: standing
     9500000: //RootNode
     13700000: SecurityGuard_mesh
+    13700002: Alien_mesh
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
@@ -138,10 +142,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
-      might lower retargeting quality:\n\t'Character1_LeftLeg' has translation animation
-      that will be discarded.\n\t'Character1_RightLeg' has translation animation that
-      will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 0
@@ -152,10 +153,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: runAnimation
+      name: standing
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 240
+      lastFrame: 2
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -179,77 +180,77 @@ ModelImporter:
       - path: 
         weight: 1
       - path: Character1_Ctrl_Reference
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_ChestEndEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_ChestOriginEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_HeadEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_LeftUpLeg
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_LeftUpLeg/Character1_Ctrl_LeftLeg
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_LeftUpLeg/Character1_Ctrl_LeftLeg/Character1_Ctrl_LeftFoot
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_RightUpLeg
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_RightUpLeg/Character1_Ctrl_RightLeg
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_RightUpLeg/Character1_Ctrl_RightLeg/Character1_Ctrl_RightFoot
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_Spine
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_Spine/Character1_Ctrl_Spine1
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_Spine/Character1_Ctrl_Spine1/Character1_Ctrl_LeftShoulder
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_Spine/Character1_Ctrl_Spine1/Character1_Ctrl_LeftShoulder/Character1_Ctrl_LeftArm
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_Spine/Character1_Ctrl_Spine1/Character1_Ctrl_LeftShoulder/Character1_Ctrl_LeftArm/Character1_Ctrl_LeftForeArm
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_Spine/Character1_Ctrl_Spine1/Character1_Ctrl_LeftShoulder/Character1_Ctrl_LeftArm/Character1_Ctrl_LeftForeArm/Character1_Ctrl_LeftHand
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_Spine/Character1_Ctrl_Spine1/Character1_Ctrl_Neck
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_Spine/Character1_Ctrl_Spine1/Character1_Ctrl_Neck/Character1_Ctrl_Head
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_Spine/Character1_Ctrl_Spine1/Character1_Ctrl_RightShoulder
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_Spine/Character1_Ctrl_Spine1/Character1_Ctrl_RightShoulder/Character1_Ctrl_RightArm
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_Spine/Character1_Ctrl_Spine1/Character1_Ctrl_RightShoulder/Character1_Ctrl_RightArm/Character1_Ctrl_RightForeArm
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_Hips/Character1_Ctrl_Spine/Character1_Ctrl_Spine1/Character1_Ctrl_RightShoulder/Character1_Ctrl_RightArm/Character1_Ctrl_RightForeArm/Character1_Ctrl_RightHand
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_HipsEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_LeftAnkleEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_LeftElbowEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_LeftHipEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_LeftKneeEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_LeftShoulderEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_LeftWristEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_RightAnkleEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_RightElbowEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_RightHipEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_RightKneeEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_RightShoulderEffector
-        weight: 0
+        weight: 1
       - path: Character1_Ctrl_Reference/Character1_Ctrl_RightWristEffector
-        weight: 0
+        weight: 1
       - path: Character1_Reference
         weight: 1
       - path: Character1_Reference/Character1_Hips
@@ -291,7 +292,7 @@ ModelImporter:
       - path: Character1_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand
         weight: 1
       - path: SecurityGuard_mesh
-        weight: 0
+        weight: 1
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0

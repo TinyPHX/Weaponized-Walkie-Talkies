@@ -1,24 +1,28 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.ImageEffects;
+using ExtensionsMethods;
 
 /// <summary>
 /// This is the script we use to control the camera. It is
 /// a modified version of the one provided by Unity standard
 /// assets.
-/// </summary>s
+/// </summary>
 public class CameraControl : MonoBehaviour
 {
+    public enum Type { NORMAL, CINIMA };
+
+    public Type cameraType = Type.NORMAL;
     public float dampTime = 0.2f;                 // Approximate time for the camera to refocus.
     public float screenEdgeBuffer = 4f;           // Space between the top/bottom most target and the screen edge.
     public float minSize = 6.5f;                  // The smallest orthographic size the camera can be.
-    [SerializeField]
-    private List<Transform> targets = new List<Transform> { }; // All the targets the camera needs to encompass.
+    [SerializeField] private List<Transform> targets = new List<Transform> { }; // All the targets the camera needs to encompass.
     public float cameraDistance = 15;
-    [SerializeField]
-    private Vector3 desiredRotation;           // The position the camera is moving towards.
+    [SerializeField] private Vector3 desiredRotation;           // The position the camera is moving towards.
     public bool moveEnabled = true;               // Whether or not the camera is moving based on it's targets
+    [SerializeField] private Vector3 offsetPosition;           // The position the camera is moving towards.
 
     private new Camera camera;                        // Used for referencing the camera.
     private float zoomSpeed;                      // Reference speed for the smooth damping of the orthographic size.
@@ -44,28 +48,34 @@ public class CameraControl : MonoBehaviour
     {
         camera = GetComponentInChildren<Camera>();
 
-        //foreach(PlayerController player in Level.Instance.Players)
-        //{
-        //    if (player != null)
-        //    {
-        //        Targets.Add(player.transform);
-        //    }
-        //}
-
         desiredRotation = transform.eulerAngles;
+
+        foreach(PlayerController playerController in FindObjectsOfType<PlayerController>())
+        {
+            targets.Add(playerController.transform);
+        }
     }
 
     private void FixedUpdate()
     {
+        if (cameraType == Type.CINIMA)
+        {
+            desiredRotation = new Vector3(
+                desiredRotation.x,
+                desiredRotation.y + .3f,
+                desiredRotation.z);
+        }
+
         // Move the camera towards a desired position.
         if (moveEnabled)
-            Move();
-        Rotate();
-
-        if (desiredPosition != Vector3.zero)
         {
-            // Change the size of the camera based.
-            Zoom();
+            Move();
+            Rotate();
+
+            if (desiredPosition != Vector3.zero)
+            {
+                Zoom();
+            }
         }
     }
 
@@ -85,7 +95,7 @@ public class CameraControl : MonoBehaviour
     {
         if (desiredRotation != transform.eulerAngles && !desiredRotation.Equals(transform.rotation))
         {
-            transform.rotation = RotateTowardsSnap(transform.rotation, Quaternion.Euler(desiredRotation), 1);
+            transform.rotation = transform.rotation.RotateTowardsSnap(Quaternion.Euler(desiredRotation), 1);
         }
     }
     private void FindAveragePosition()
@@ -121,9 +131,9 @@ public class CameraControl : MonoBehaviour
         }
 
         // The desired position is the average position;
-        desiredPosition = averagePos;
+        desiredPosition = averagePos + offsetPosition;
     }
-
+    
     private void Zoom()
     {
         // Find the required size based on the desired position and smoothly transition to that size.
@@ -134,7 +144,7 @@ public class CameraControl : MonoBehaviour
         }
         else
         {
-            cameraDistance = Mathf.SmoothDamp(camera.orthographicSize, requiredSize, ref zoomSpeed, dampTime) * 3;
+            camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, requiredSize, ref zoomSpeed, dampTime) * 3;
 
             if (depthOfField != null)
             {
@@ -196,20 +206,6 @@ public class CameraControl : MonoBehaviour
 
     public void SetPositionNoDamp(Vector3 position)
     {
-        transform.position = position + (transform.rotation * (Vector3.back * cameraDistance)); // Sets camera position back from given position by camera distance
-    }
-
-    public Quaternion RotateTowardsSnap(Quaternion rotationA, Quaternion rotationB, float maxDegreesDelta)
-    {
-        if (Quaternion.Angle(rotationA, rotationB) < maxDegreesDelta)
-        {
-            rotationA = rotationB;
-        }
-        else
-        {
-            rotationA = Quaternion.RotateTowards(rotationA, rotationB, maxDegreesDelta);
-        }
-
-        return rotationA;
+       transform.position = position + (transform.rotation * (Vector3.back * cameraDistance)); // Sets camera position back from given position by camera distance
     }
 }

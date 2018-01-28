@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Walkie Talkie (on)
-  m_Shader: {fileID: 4800000, guid: 35b7c6ba7e7041445a6bcfab3a36db38, type: 3}
-  m_ShaderKeywords: OUTLINE_BLENDING TCP2_OUTLINE_CONST_SIZE TCP2_RAMPTEXT TCP2_ZSMOOTH_ON
+  m_Shader: {fileID: 4800000, guid: 273873a89ee343b45a1471ba4c363d79, type: 3}
+  m_ShaderKeywords: OUTLINES TCP2_OUTLINE_CONST_SIZE TCP2_RAMPTEXT TCP2_ZSMOOTH_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -70,9 +70,9 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Offset1: 1
-    - _Offset2: 1
-    - _Outline: 0.2
+    - _Offset1: 0
+    - _Offset2: 0
+    - _Outline: 0.8
     - _Parallax: 0.02
     - _RampSmooth: 0.1
     - _RampThreshold: 0.5
@@ -82,7 +82,7 @@ Material:
     - _SrcBlendOutline: 5
     - _TexLod: 5
     - _UVSec: 0
-    - _ZSmooth: 1
+    - _ZSmooth: 3
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

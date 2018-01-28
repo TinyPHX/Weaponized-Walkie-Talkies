@@ -22,11 +22,6 @@ public class PlayerAnimator : MonoBehaviour
         {
             runBlend = value * speedMultiplierCurve.Evaluate(value);
             animator.SetFloat(FLOAT_RUNBLEND, RunBlend);
-
-            if (runBlend != 0)
-            {
-                Debug.Log("runBlend: " + runBlend);
-            }
         }
     }
 

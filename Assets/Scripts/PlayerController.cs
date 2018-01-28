@@ -13,11 +13,23 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector] public InputDevice inputDevice;
     public Rigidbody rigidBody;
     public float rotationDeadzone = 0.001f;
+
+    public bool altAntennaControl = false;
+    public float antennaSpeed = 10;
+    public AnimationCurve antennaSpeedCurve;
+
+    //Input
     private Vector2 inputMove = Vector2.zero;
     private Vector2 inputLook = Vector2.zero;
+    private float inputJump;
+    private float inputToggleWalkieOn;
+    private float inputPreviousToggleWalkieOn;
+    private float inputAntennaOut;
+    private float inputAntennaIn;
+
 
     [SerializeField] private float maxHealth = 250f;
-    private float health = 250f;
+    [SerializeField] private float health = 250f;
 
     public WalkieController.Team playerTeam = WalkieController.Team.RED;
 
@@ -45,13 +57,25 @@ public class PlayerController : MonoBehaviour {
         {
             activlyHeldWalkie.transform.position = walkieAnchor.transform.position;
             activlyHeldWalkie.transform.rotation = walkieAnchor.transform.rotation;
+            
+            Rigidbody walkieRigidBody = activlyHeldWalkie.GetComponent<Rigidbody>();
+            if (walkieRigidBody != null)
+            {
+                walkieRigidBody.velocity = Vector3.zero;
+            }
         }
     }
 
     private void UpdateInput()
     {
+        inputPreviousToggleWalkieOn = inputToggleWalkieOn;
+
         inputMove = new Vector2(inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_1_X), -inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_1_Y));
         inputLook = new Vector2(inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_2_X), inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_2_Y));
+        inputJump = inputDevice.GetAxis(InputDevice.GenericInputs.ACTION_1);
+        inputToggleWalkieOn = inputDevice.GetAxis(InputDevice.GenericInputs.ACTION_4);
+        inputAntennaIn = inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_ALT_1);
+        inputAntennaOut = inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_ALT_2);
     }
 
     private void UpdateMovement()
@@ -77,15 +101,30 @@ public class PlayerController : MonoBehaviour {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * move_speed);
         }
 
-        Debug.Log("inputMove.magnitude: " + inputMove.magnitude);
-
         playerAnimator.RunBlend = inputMove.magnitude;
         playerAnimator.SpeedMultiplier = inputMove.magnitude;
     }
 
     private void UpdateWalkieAntenna()
     {
-        activlyHeldWalkie.AntennaLength = inputLook.magnitude;
+        if (activlyHeldWalkie != null)
+        {
+            if (altAntennaControl)
+            {
+                float newAntennaLenngth = activlyHeldWalkie.AntennaLength + 
+                    ((antennaSpeedCurve.Evaluate(inputAntennaOut) - antennaSpeedCurve.Evaluate(inputAntennaIn)) * Time.deltaTime * antennaSpeed);
+                activlyHeldWalkie.AntennaLength = Mathf.Clamp(newAntennaLenngth, 0, 1);
+            }
+            else
+            {
+                activlyHeldWalkie.AntennaLength = inputLook.magnitude;
+            }
+
+            if (inputToggleWalkieOn > 0 && inputPreviousToggleWalkieOn == 0)
+            {
+                activlyHeldWalkie.on = !activlyHeldWalkie.on;
+            }
+        }
     }
 
     public float getHealth()
