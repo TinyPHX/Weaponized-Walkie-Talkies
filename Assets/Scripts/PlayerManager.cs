@@ -45,7 +45,7 @@ class PlayerManager : MonoBehaviour
             }
         }
     }
-    
+
     private void UpdateInputDeviceAssignments()
     {
         //for each playerController 

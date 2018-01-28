@@ -34,7 +34,8 @@ public class Signal : MonoBehaviour
         points[point_End] = line.position;
         CalculateMiddle();
         lRend.SetPositions(points);
-        lRend.SetWidth(RandomWidthOffset(), RandomWidthOffset());
+        lRend.startWidth = RandomWidthOffset();
+        lRend.endWidth = RandomWidthOffset();
         StartCoroutine(Beam());
     }
 
@@ -56,9 +57,11 @@ public class Signal : MonoBehaviour
     {
         float x = (point1.x + point2.x) / point_Center;
         float finalX = Random.Range(x - randomPosOffset, x + randomPosOffset);
+        float y = (point1.y + point2.y) / point_Center;
+        float finalY = Random.Range(y - randomPosOffset, y + randomPosOffset);
         float z = (point1.z + point2.z) / point_Center;
         float finalZ = Random.Range(z - randomPosOffset, z + randomPosOffset);
 
-        return new Vector3(finalX, 0, finalZ);
+        return new Vector3(finalX, finalY, finalZ);
     }
 }
