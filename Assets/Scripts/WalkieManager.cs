@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WalkieManager : MonoBehaviour {
 
-    public List<WalkieController> walkieControllerList = new List<WalkieController>();
+    public List<WalkieController> walkieControllerList;
     public List<Signal> signalEffectsRed = new List<Signal>();
     public List<Signal> signalEffectsBlue = new List<Signal>();
 
@@ -22,6 +22,8 @@ public class WalkieManager : MonoBehaviour {
         {
             s.GetComponent<LineRenderer>().enabled = false;
         }
+
+        walkieControllerList = new List<WalkieController>(FindObjectsOfType<WalkieController>());
     }
 	
 	// Update is called once per frame
