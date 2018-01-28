@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -967,67 +967,67 @@ Prefab:
     - target: {fileID: 224397804780665284, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224397804780665284, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224466498079256616, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224466498079256616, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224073987721180202, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.016
       objectReference: {fileID: 0}
     - target: {fileID: 224073987721180202, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224812441216273656, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224812441216273656, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224906665414780936, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224906665414780936, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224017910208307986, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.147
       objectReference: {fileID: 0}
     - target: {fileID: 224017910208307986, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224492520499018894, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.99300003
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224492520499018894, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
@@ -1037,12 +1037,12 @@ Prefab:
     - target: {fileID: 224819117914402712, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224819117914402712, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114254007906027322, guid: 1774e3f057c685245a85c9102cc6e0dd,
         type: 2}
@@ -1383,6 +1383,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 701474488}
   m_Script: {fileID: 11500000, guid: 5637dbe494238f04ab9a6362ac7542ff, type: 3}
+--- !u!114 &1096277885 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114008266397509776, guid: 317a45529e52f8c4abae1391fab1e43a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1124835634}
+  m_Script: {fileID: 11500000, guid: 2d60f7ac0d6de6c4f9ee26e2bb62ec83, type: 3}
 --- !u!1 &1109197675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,6 +2639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager: {fileID: 279412514}
+  walkieManager: {fileID: 1096277885}
   spawnPositions:
   - {fileID: 618634466}
   - {fileID: 1928888784}
