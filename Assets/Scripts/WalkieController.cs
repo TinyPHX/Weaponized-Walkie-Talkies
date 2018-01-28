@@ -15,8 +15,8 @@ public class WalkieController : MonoBehaviour {
     public float damage = 30f; // damage done to playerController
     public float effectiveRange = 5f;
 
-    protected InputDevice inputDevice; // reference to controlling player's inputDevice
-    public InputDevice.GenericInputs onOffAxis = InputDevice.GenericInputs.AXIS_ALT_1;
+    [HideInInspector] public InputDevice inputDevice; // reference to controlling player's inputDevice
+    public InputDevice.GenericInputs onOffAxis = InputDevice.GenericInputs.AXIS_ALT_2; // Trigger right
 
     // Use this for initialization
     void Start () {

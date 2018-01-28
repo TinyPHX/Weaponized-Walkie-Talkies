@@ -10,15 +10,20 @@ public class PlayerController : MonoBehaviour {
     public Rigidbody rigidBody;
     public float rotationDeadzone = 0.001f;
     private Vector2 inputRotation = Vector2.zero;
+    public Transform walkieTalkieAnchor;
+    public WalkieController walkieTalkie;
 
     private float maxHealth = 250f;
     private float health = 250f;
 
     public WalkieController.Team playerTeam = WalkieController.Team.RED;
+    public InputDevice.GenericInputs pickupAxis = InputDevice.GenericInputs.AXIS_ALT_1; // Trigger left
+    public Collider walkieTalkieTriggerCollider;
+    public string walkieTalkieTag = "walkieTalkie";
 
     // Use this for initialization
     void Start () {
-        
+
 	}
 	
 	// Update is called once per frame
@@ -37,6 +42,7 @@ public class PlayerController : MonoBehaviour {
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * move_speed);
             }
         }
+        updateWalkieTalkie();
     }
 
     public float getHealth()
@@ -73,5 +79,18 @@ public class PlayerController : MonoBehaviour {
         {
             this.health += amount;
         }
+    }
+
+    public void updateWalkieTalkie()
+    {
+        if (walkieTalkie != null)
+        {
+            walkieTalkie.inputDevice = this.inputDevice;
+            if (walkieTalkieAnchor != null && inputDevice != null)
+            {
+                walkieTalkie.transform.position = walkieTalkieAnchor.position;
+                walkieTalkie.transform.rotation = walkieTalkieAnchor.rotation;
+            }
+        }   
     }
 }
