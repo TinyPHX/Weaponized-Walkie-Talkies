@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WalkieController : MonoBehaviour {
 
+    public WalkieAnimator walkieAnimator;
+
     public Transform antennaTip;
     public bool on = false;
     public enum Team { RED, BLUE };
@@ -17,6 +19,8 @@ public class WalkieController : MonoBehaviour {
 
     protected InputDevice inputDevice; // reference to controlling player's inputDevice
     public InputDevice.GenericInputs onOffAxis = InputDevice.GenericInputs.AXIS_ALT_1;
+
+    private float antennaLength;
 
     // Use this for initialization
     void Start () {
@@ -38,4 +42,20 @@ public class WalkieController : MonoBehaviour {
                 on = true;
         }
 	}
+    
+    public float AntennaLength
+    {
+        get
+        {
+            return antennaLength;
+        }
+
+        set
+        {
+            antennaLength = value;
+            walkieAnimator.AntennaLength = value;
+
+            Debug.Log("antennaLength: " + antennaLength);
+        }
+    }
 }
