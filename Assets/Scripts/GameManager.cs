@@ -17,12 +17,13 @@ public class GameManager : MonoBehaviour {
     private bool gameInProgress;
 
     // Use this for initialization
-    void Start () {
-        SetWinner(Teams.Aliens);
+    void Start ()
+    {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 
         // Reset game when they press R AND game is over
         if (Input.GetKeyDown("r") && !gameInProgress)

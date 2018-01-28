@@ -226,9 +226,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ResetHealth(float newHealth)
+    public void ResetHealth()
     {
-        health = newHealth;
+        health = maxHealth;
     }
 
     private void Jump()
