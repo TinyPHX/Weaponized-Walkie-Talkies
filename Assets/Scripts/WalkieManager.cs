@@ -32,7 +32,7 @@ public class WalkieManager : MonoBehaviour {
             s.GetComponent<LineRenderer>().enabled = false;
         }
 
-        walkieControllerList = new List<WalkieController>(FindObjectsOfType<WalkieController>());
+        //walkieControllerList = new List<WalkieController>(FindObjectsOfType<WalkieController>());
     }
 	
 	// Update is called once per frame
