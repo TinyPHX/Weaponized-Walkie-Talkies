@@ -17,9 +17,6 @@ public class WalkieController : MonoBehaviour {
     public float damage = 30f; // damage done to playerController
     public float effectiveRange = 5f;
 
-    [HideInInspector] public InputDevice inputDevice; // reference to controlling player's inputDevice
-    public InputDevice.GenericInputs onOffAxis = InputDevice.GenericInputs.AXIS_ALT_2; // Trigger right
-
     private float antennaLength;
 
     // Use this for initialization
@@ -33,14 +30,6 @@ public class WalkieController : MonoBehaviour {
             power -= powerLoss * Time.deltaTime;
         if (power < 0)
             power = 0;
-
-        if(inputDevice != null && inputDevice.GetAxis(onOffAxis) == 1)
-        {
-            if (on)
-                on = false;
-            else
-                on = true;
-        }
 	}
     
     public float AntennaLength
