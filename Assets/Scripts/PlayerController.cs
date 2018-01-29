@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    
+    [Header(" --- EFFECTS --- ")]
+    public Effect damaged;
+    public Effect jump;
+    
+    [Header(" --- OTHER STUFF --- ")]
     public PlayerAnimator playerAnimator;
     public WalkieController activelyHeldWalkie;
     public Transform walkieAnchor;
@@ -20,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public float antennaSpeed = 10;
     public AnimationCurve antennaSpeedCurve;
 
-    public InputDevice.GenericInputs jumpAxis = InputDevice.GenericInputs.ACTION_1; // a
+    public InputDevice.GenericInputs jumpAxis = InputDevice.GenericInputs.ACTION_1;
 
     //Input
     private Vector2 inputMove = Vector2.zero;
@@ -80,6 +85,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         jumpMask = LayerMask.NameToLayer(jumpMaskString);
+        jump = Instantiate(jump);
+        damaged = Instantiate(damaged);
     }
 
     // Update is called once per frame
@@ -196,11 +203,6 @@ public class PlayerController : MonoBehaviour
         return health;
     }
 
-    public void setHealth(float health)
-    {
-        this.health = health;
-    }
-
     public float getMaxHealth()
     {
         return maxHealth;
@@ -213,17 +215,25 @@ public class PlayerController : MonoBehaviour
 
     public void changeHealth(float amount) // negative or positive
     {
-        if (this.health + amount > maxHealth)
+        if (health + amount > maxHealth)
         {
-            this.health = maxHealth;
+            health = maxHealth;
         }
-        else if (this.health + amount < 0)
+        else if (health + amount < 0)
         {
-            this.health = 0;
+            health = 0;
         }
         else
         {
-            this.health += amount;
+            health += amount;
+        }
+
+        if (amount < 0 && health > 0)
+        {
+            if (!damaged.IsPlaying)
+            {
+                damaged.Play();
+            }
         }
     }
 
@@ -289,7 +299,7 @@ public class PlayerController : MonoBehaviour
             lastJumpTime = Time.time;
 
             //jumpEffect.transform.position = transform.position;
-            //jumpEffect.Play();
+            jump.Play();
         }
     }
 

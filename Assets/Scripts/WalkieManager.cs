@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WalkieManager : MonoBehaviour {
-
+    
+    [Header(" --- EFFECTS --- ")]
+    public Effect beamOff;
+    public Effect beamOn;
+    public Effect batteryDead;
+    public Effect batteryFull;
+    
+    [Header(" --- OTHER STUFF --- ")]
     public List<WalkieController> walkieControllerList;
     public List<Signal> signalEffectsRed = new List<Signal>();
     public List<Signal> signalEffectsBlue = new List<Signal>();
+    public bool redOn = true;
+    public bool blueOn = true;
     public Transform startPointRed;
     public Transform startPointBlue;
     public Transform endPointRed;
@@ -21,16 +30,9 @@ public class WalkieManager : MonoBehaviour {
     public int[] intervalNumBeams = { 3, 2, 1 };
 
     // Use this for initialization
-    void Start () {
-        foreach (Signal s in signalEffectsRed)
-        {
-            s.GetComponent<LineRenderer>().enabled = false;
-        }
-
-        foreach (Signal s in signalEffectsBlue)
-        {
-            s.GetComponent<LineRenderer>().enabled = false;
-        }
+    void Start () {        
+        TurnSignalOff(WalkieController.Team.RED);
+        TurnSignalOff(WalkieController.Team.BLUE);
 
         //walkieControllerList = new List<WalkieController>(FindObjectsOfType<WalkieController>());
     }
@@ -106,11 +108,6 @@ public class WalkieManager : MonoBehaviour {
                                 startPointRed.position = at1.position;
                                 endPointRed.position = at2.position;
 
-                                foreach (Signal s in signalEffectsRed)
-                                {
-                                    s.GetComponent<LineRenderer>().enabled = false;
-                                }
-
                                 int numBeams = 0;
 
                                 if (antennaDistance < beamCutoffs[0])
@@ -126,23 +123,14 @@ public class WalkieManager : MonoBehaviour {
                                     numBeams = intervalNumBeams[2];
                                 }
 
-                                for(int i=0;i<numBeams;i++)
-                                {
-                                    if (signalEffectsRed.Count > i)
-                                        signalEffectsRed[i].GetComponent<LineRenderer>().enabled = true;
-                                }
+                                TurnSignalOn(wc1.playerTeam, numBeams);
                             }
 
                             if (wc1.playerTeam == WalkieController.Team.BLUE)
                             {
                                 startPointBlue.position = at1.position;
                                 endPointBlue.position = at2.position;
-
-                                foreach (Signal s in signalEffectsBlue)
-                                {
-                                    s.GetComponent<LineRenderer>().enabled = false;
-                                }
-
+                                
                                 int numBeams = 0;
 
                                 if (antennaDistance < beamCutoffs[0])
@@ -157,36 +145,88 @@ public class WalkieManager : MonoBehaviour {
                                 {
                                     numBeams = intervalNumBeams[2];
                                 }
-
-                                for (int i = 0; i < numBeams; i++)
-                                {
-                                    if (signalEffectsBlue.Count > i)
-                                        signalEffectsBlue[i].GetComponent<LineRenderer>().enabled = true;
-                                }
+                                
+                                TurnSignalOn(wc1.playerTeam, numBeams);
                             }
 
                         }
                     }
                     else
                     {
-                        if (wc1.playerTeam == WalkieController.Team.RED)
-                        {
-                            foreach (Signal s in signalEffectsRed)
-                            {
-                                s.GetComponent<LineRenderer>().enabled = false;
-                            }
-                        }
-
-                        if (wc1.playerTeam == WalkieController.Team.BLUE)
-                        {
-                            foreach (Signal s in signalEffectsBlue)
-                            {
-                                s.GetComponent<LineRenderer>().enabled = false;
-                            }
-                        }
+                        TurnSignalOff(wc1.playerTeam);
                     }
                 }
             }
+        }
+    }
+
+    private void TurnSignalOn(WalkieController.Team team, int powerLevel)
+    {
+        SetPowerLevel(team, powerLevel);
+    }
+
+    private void TurnSignalOff(WalkieController.Team team)
+    {
+        SetPowerLevel(team, 0);
+    }
+
+    private void SetPowerLevel(WalkieController.Team team, int powerLevel)
+    {
+        List<Signal> signalEffects = new List<Signal> { };
+
+        bool on = powerLevel != 0;
+        bool onChanged = false;
+
+        if (team == WalkieController.Team.RED)
+        {
+            signalEffects = signalEffectsRed;
+
+            if (redOn != on)
+            {
+                redOn = on;
+                onChanged = true;
+            }
+        }
+        else if (team == WalkieController.Team.BLUE)
+        {
+            signalEffects = signalEffectsBlue;
+
+            if (blueOn != on)
+            {
+                blueOn = on;
+                onChanged = true;
+            }
+        }
+
+        for (int i = 0; i < signalEffects.Count; i++)
+        {
+            Signal signal = signalEffects[i];
+            LineRenderer lineRenderer = signal.GetComponent<LineRenderer>();
+
+            bool enabled = false;
+
+            if (i < powerLevel)
+            {
+                enabled = true;
+            }
+
+            if (lineRenderer.enabled != enabled)
+            {
+                lineRenderer.enabled = enabled;
+            }
+        }
+
+        if (onChanged)
+        {
+            if (on)
+            {
+                beamOn.PrefabPlay();
+            }
+            else
+            {
+                beamOff.PrefabPlay();
+            }
+
         }
     }
 

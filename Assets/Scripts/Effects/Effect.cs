@@ -138,6 +138,19 @@ public class Effect : MonoBehaviour
         }
     }
 
+    public void PrefabPlay()
+    {
+        if (IsPrefab)
+        {
+            Effect effect = Instantiate(this);
+            effect.Play();
+        }
+        else
+        {
+            Debug.LogWarning("You tried to call PrefabPlay on an effect that is not a prefab. Effect was not played.");
+        }
+    }
+
     public void Play()
     {
         effectState = EffectState.PLAYING;
@@ -271,6 +284,21 @@ public class Effect : MonoBehaviour
             }
 
             //cameraShake.Stop(); //TODO: implement Stop for camera shake
+        }
+    }
+
+    public bool IsPrefab
+    {
+        get {
+            return gameObject.scene.name == null;
+        }
+    }
+
+    public bool IsPlaying
+    {
+        get
+        {
+            return effectState == EffectState.PLAYING;
         }
     }
 }
