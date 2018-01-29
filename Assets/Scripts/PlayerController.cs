@@ -60,7 +60,19 @@ public class PlayerController : MonoBehaviour
 
         set
         {
-            value = dead;
+            dead = value;
+
+            //gameObject.SetActive(!dead);
+
+            foreach(SkinnedMeshRenderer mesh in GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                mesh.enabled = !dead;
+            }
+
+            //foreach(Collider collider in GetComponentsInChildren<Collider>())
+            //{
+            //    collider.enabled = !dead;
+            //}
         }
     }
 
@@ -74,7 +86,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if (!dead)
+        if (!Dead)
         {
             UpdateWalkiePosition();
 
@@ -99,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
         if(health <= 0)
         {
-            dead = true;
+            Dead = true;
         }
     }
 
@@ -261,7 +273,7 @@ public class PlayerController : MonoBehaviour
     public void ResetHealth()
     {
         health = maxHealth;
-        dead = false;
+        Dead = false;
     }
 
     private void Jump()

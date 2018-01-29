@@ -80,8 +80,6 @@ public class WalkieController : MonoBehaviour {
         {
             antennaLength = value;
             walkieAnimator.AntennaLength = value;
-
-            Debug.Log("antennaLength: " + antennaLength);
         }
     }
 }
