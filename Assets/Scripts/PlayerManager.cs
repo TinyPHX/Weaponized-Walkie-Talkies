@@ -6,23 +6,17 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public List<PlayerController> playerControllers = new List<PlayerController> { };
-    public List<InputDevice> allInputDevices = new List<InputDevice> { };
-    public List<InputDevice.ID> unassignedInputDevices = new List<InputDevice.ID> { };
+    public bool allowKeyboardInput = true;
+    private List<InputDevice> allInputDevices = new List<InputDevice> { };
+    private List<InputDevice.ID> unassignedInputDevices = new List<InputDevice.ID> { };
+    private List<InputDevice.ID> possibleInputIds = new List<InputDevice.ID> { };
 
     public bool updateHealthSliders = true;
     public List<HealthDisplay> healthDisplays = new List<HealthDisplay>();
 
     public void Start()
     {
-        int controllerCount = InputDevice.CONTROLLERS.Count;
-        for (int i = 0; i < controllerCount; i++)
-        {
-            InputDevice.ID inputDeviceID = InputDevice.CONTROLLERS[i];
-            InputDevice inputDevice = new InputDevice(inputDeviceID);
-            unassignedInputDevices.Add(inputDeviceID);
-
-            allInputDevices.Add(inputDevice);
-        }
+        SetupInputDeviceAssignments();
         if(updateHealthSliders)
             UpdateHealthDisplays();
     }
@@ -46,13 +40,23 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private void SetupInputDeviceAssignments()
+    {
+        possibleInputIds = InputDevice.CONTROLLERS;
+        if (allowKeyboardInput)
+        {
+            possibleInputIds.Add(InputDevice.ID.K1);
+        }
+        foreach (InputDevice.ID possibleInputId in possibleInputIds)
+        {
+            InputDevice inputDevice = new InputDevice(possibleInputId);
+            unassignedInputDevices.Add(possibleInputId);
+            allInputDevices.Add(inputDevice);
+        }
+    }
+
     private void UpdateInputDeviceAssignments()
     {
-        //for each playerController 
-        //if playerController.inputDevice == null
-        //loop each allInputDevices
-        //check if "A" pressed
-        //playerController.inputDevice = curentInputDevice
         InputDevice.ID idToRemove = InputDevice.ID.NONE;
         foreach (PlayerController pc in playerControllers) {
             if(pc.inputDevice == null)
@@ -81,9 +85,6 @@ public class PlayerManager : MonoBehaviour
 
     private void RefreshInputDevices()
     {
-        //loop through playerControllers
-        //check if playerController.inputDevice.IsController() == false
-        //playerController.InputDevice = null;
         foreach (PlayerController pc in playerControllers)
         {
             if (pc.inputDevice != null && pc.inputDevice.IsController() == false)

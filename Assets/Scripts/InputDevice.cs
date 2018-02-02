@@ -153,7 +153,7 @@ public class InputDevice
         { GenericInputs.ACTION_1, KeyboardInputs.SPACE },
         { GenericInputs.ACTION_2, KeyboardInputs.Q },
         { GenericInputs.ACTION_3, KeyboardInputs.E },
-        { GenericInputs.ACTION_4, KeyboardInputs.Q },
+        { GenericInputs.ACTION_4, KeyboardInputs.ALT },
         { GenericInputs.ACTION_ALT_1, KeyboardInputs.SCROLL_X },
         { GenericInputs.ACTION_ATL_2, KeyboardInputs.SCROLL_Y },
         { GenericInputs.INDEX_1, KeyboardInputs.NUMBER_1 },

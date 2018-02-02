@@ -28,6 +28,30 @@ public class PlayerController : MonoBehaviour
     public InputDevice.GenericInputs jumpAxis = InputDevice.GenericInputs.ACTION_1;
 
     //Input
+    private Dictionary<string, InputDevice.GenericInputs> keyboardInputBindings = new Dictionary<string, InputDevice.GenericInputs>() {
+        {"inputMoveX", InputDevice.GenericInputs.AXIS_1_X}, // ad
+        {"inputMoveY", InputDevice.GenericInputs.AXIS_1_Y}, // ws
+        {"inputLookX", InputDevice.GenericInputs.AXIS_2_X}, // left right
+        {"inputLookY", InputDevice.GenericInputs.AXIS_2_X}, // up down
+        {"inputJump", InputDevice.GenericInputs.ACTION_1}, // space
+        {"inputToggleWalkieOn", InputDevice.GenericInputs.ACTION_4}, // alt
+        {"inputAntennaIn", InputDevice.GenericInputs.ACTION_2}, // q
+        {"inputAntennaOut", InputDevice.GenericInputs.ACTION_3} // e
+    };
+
+    private Dictionary<string, InputDevice.GenericInputs> xboxInputBindings = new Dictionary<string, InputDevice.GenericInputs>() {
+        {"inputMoveX", InputDevice.GenericInputs.AXIS_1_X}, // left_joy_x
+        {"inputMoveY", InputDevice.GenericInputs.AXIS_1_Y}, // left_joy_y
+        {"inputLookX", InputDevice.GenericInputs.AXIS_2_X}, // right_joy_x
+        {"inputLookY", InputDevice.GenericInputs.AXIS_2_X}, // right_joy_y
+        {"inputJump", InputDevice.GenericInputs.ACTION_1}, // A
+        {"inputToggleWalkieOn", InputDevice.GenericInputs.ACTION_4}, // Y
+        {"inputAntennaIn", InputDevice.GenericInputs.AXIS_ALT_1}, // left trigger
+        {"inputAntennaOut", InputDevice.GenericInputs.AXIS_ALT_2} // right trigger
+    };
+
+    private Dictionary<string, InputDevice.GenericInputs> finalInputBindings;
+
     private Vector2 inputMove = Vector2.zero;
     private Vector2 inputLook = Vector2.zero;
     private float inputJump;
@@ -85,8 +109,14 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         jumpMask = LayerMask.NameToLayer(jumpMaskString);
-        jump = Instantiate(jump);
-        damaged = Instantiate(damaged);
+        if (jump != null)
+        {
+            jump = Instantiate(jump);
+        }
+        if (damaged != null)
+        {
+            damaged = Instantiate(damaged);
+        }
     }
 
     // Update is called once per frame
@@ -141,12 +171,29 @@ public class PlayerController : MonoBehaviour
     {
         inputPreviousToggleWalkieOn = inputToggleWalkieOn;
 
-        inputMove = new Vector2(inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_1_X), -inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_1_Y));
-        inputLook = new Vector2(inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_2_X), inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_2_Y));
-        inputJump = inputDevice.GetAxis(InputDevice.GenericInputs.ACTION_1);
-        inputToggleWalkieOn = inputDevice.GetAxis(InputDevice.GenericInputs.ACTION_4);
-        inputAntennaIn = inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_ALT_1);
-        inputAntennaOut = inputDevice.GetAxis(InputDevice.GenericInputs.AXIS_ALT_2);
+        Vector2 keyboardMoveMult = new Vector2(1, 1);
+        Vector2 xboxMoveMult = new Vector2(1, -1); // xbox gives the y-axis for movement negated
+        Vector2 finalMoveMult = xboxMoveMult;
+
+        Vector2 keyboardLookMult = new Vector2(1, -1); // keyboard gives the y-axis for looking negated
+        Vector2 xboxLookMult = new Vector2(1, 1);
+        Vector2 finalLookMult = xboxLookMult;
+
+        finalInputBindings = xboxInputBindings;
+
+        if (inputDevice.Type == InputDevice.InputDeviceType.KEYBOARD)
+        {
+            finalMoveMult = keyboardMoveMult;
+            finalLookMult = keyboardLookMult;
+            finalInputBindings = keyboardInputBindings;
+        } 
+
+        inputMove = new Vector2(inputDevice.GetAxis(finalInputBindings["inputMoveX"]) * finalMoveMult.x, inputDevice.GetAxis(finalInputBindings["inputMoveY"]) * finalMoveMult.y);
+        inputLook = new Vector2(inputDevice.GetAxis(finalInputBindings["inputLookX"]) * finalLookMult.x, inputDevice.GetAxis(finalInputBindings["inputLookY"]) * finalLookMult.y);
+        inputJump = inputDevice.GetAxis(finalInputBindings["inputJump"]);
+        inputToggleWalkieOn = inputDevice.GetAxis(finalInputBindings["inputToggleWalkieOn"]);
+        inputAntennaIn = inputDevice.GetAxis(finalInputBindings["inputAntennaIn"]);
+        inputAntennaOut = inputDevice.GetAxis(finalInputBindings["inputAntennaOut"]);
     }
 
     private void UpdateMovement()
@@ -230,7 +277,7 @@ public class PlayerController : MonoBehaviour
 
         if (amount < 0 && health > 0)
         {
-            if (!damaged.IsPlaying)
+            if (damaged != null && !damaged.IsPlaying)
             {
                 damaged.Play();
             }
@@ -299,7 +346,10 @@ public class PlayerController : MonoBehaviour
             lastJumpTime = Time.time;
 
             //jumpEffect.transform.position = transform.position;
-            jump.Play();
+            if (jump != null)
+            {
+                jump.Play();
+            }
         }
     }
 

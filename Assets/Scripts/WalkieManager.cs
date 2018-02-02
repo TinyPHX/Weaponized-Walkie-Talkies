@@ -220,11 +220,17 @@ public class WalkieManager : MonoBehaviour {
         {
             if (on)
             {
-                beamOn.PrefabPlay();
+                if (beamOn != null)
+                {
+                    beamOn.PrefabPlay();
+                }
             }
             else
             {
-                beamOff.PrefabPlay();
+                if (beamOff != null)
+                {
+                    beamOff.PrefabPlay();
+                }
             }
 
         }

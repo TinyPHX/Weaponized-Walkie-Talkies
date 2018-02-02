@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WalkieController : MonoBehaviour {
 
-    
     [Header(" --- EFFECTS --- ")]
     public Effect walkieOn;
     public Effect walkieOff;
@@ -53,7 +52,14 @@ public class WalkieController : MonoBehaviour {
                     mesh.material = onMaterial;
                 }
 
-                walkieOn.PrefabPlay();
+                if (walkieOn != null)
+                {
+                    walkieOn.PrefabPlay();
+                }
+                /*else // this can possibly be used in the future
+                {
+                    Globals.logMissingReference("walkieOn", "WalkieController.cs", this.name);
+                }*/
             }
 
             if (power > 0)
@@ -69,8 +75,15 @@ public class WalkieController : MonoBehaviour {
                 {
                     mesh.material = offMaterial;
                 }
-                
-                walkieOff.PrefabPlay();
+
+                if (walkieOff != null)
+                {
+                    walkieOff.PrefabPlay();
+                }
+                /*else
+                {
+                    Globals.logMissingReference("walkieOff", "WalkieController.cs", this.name);
+                }*/
             }
 
             if (power < maxPower)
@@ -93,12 +106,26 @@ public class WalkieController : MonoBehaviour {
         {
             if (power <= 0)
             {
-                batteryDead.PrefabPlay();
+                if (batteryDead != null)
+                {
+                    batteryDead.PrefabPlay();
+                }
+                /*else
+                {
+                    Globals.logMissingReference("batteryDead", "WalkieController.cs", this.name);
+                }*/
             }
 
             if (power == maxPower)
             {
-                batteryFull.PrefabPlay();
+                if (batteryFull != null)
+                {
+                    batteryFull.PrefabPlay();
+                }
+                /*else
+                {
+                    Globals.logMissingReference("batteryFull", "WalkieController.cs", this.name);
+                }*/
             }
         }
 
