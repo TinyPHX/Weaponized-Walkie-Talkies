@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour
         {"inputLookY", InputDevice.GenericInputs.AXIS_2_X}, // up down
         {"inputJump", InputDevice.GenericInputs.ACTION_1}, // space
         {"inputToggleWalkieOn", InputDevice.GenericInputs.ACTION_4}, // alt
-        {"inputAntennaIn", InputDevice.GenericInputs.ACTION_2}, // q
-        {"inputAntennaOut", InputDevice.GenericInputs.ACTION_3} // e
+        {"inputAntennaIn", InputDevice.GenericInputs.ACTION_3}, // e
+        {"inputAntennaOut", InputDevice.GenericInputs.ACTION_2} // q
     };
 
     private Dictionary<string, InputDevice.GenericInputs> xboxInputBindings = new Dictionary<string, InputDevice.GenericInputs>() {
