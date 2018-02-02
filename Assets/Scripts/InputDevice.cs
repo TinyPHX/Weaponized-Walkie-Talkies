@@ -91,7 +91,7 @@ public class InputDevice
         SHIFT,
         Q,
         E,
-        TAB,
+        R,
         ALT,
         MOUSE_LEFT,
         MOUSE_MIDDLE,

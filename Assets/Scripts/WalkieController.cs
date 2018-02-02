@@ -56,10 +56,6 @@ public class WalkieController : MonoBehaviour {
                 {
                     walkieOn.PrefabPlay();
                 }
-                /*else // this can possibly be used in the future
-                {
-                    Globals.logMissingReference("walkieOn", "WalkieController.cs", this.name);
-                }*/
             }
 
             if (power > 0)
@@ -80,10 +76,6 @@ public class WalkieController : MonoBehaviour {
                 {
                     walkieOff.PrefabPlay();
                 }
-                /*else
-                {
-                    Globals.logMissingReference("walkieOff", "WalkieController.cs", this.name);
-                }*/
             }
 
             if (power < maxPower)
@@ -110,10 +102,6 @@ public class WalkieController : MonoBehaviour {
                 {
                     batteryDead.PrefabPlay();
                 }
-                /*else
-                {
-                    Globals.logMissingReference("batteryDead", "WalkieController.cs", this.name);
-                }*/
             }
 
             if (power == maxPower)
@@ -122,10 +110,6 @@ public class WalkieController : MonoBehaviour {
                 {
                     batteryFull.PrefabPlay();
                 }
-                /*else
-                {
-                    Globals.logMissingReference("batteryFull", "WalkieController.cs", this.name);
-                }*/
             }
         }
 
